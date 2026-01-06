@@ -6,6 +6,7 @@
     "node": "24.x",
     "npm": ">=10.0.0"
   },
+  "_comment": "Node.js 24.x required for Vercel deployment",
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.8",
