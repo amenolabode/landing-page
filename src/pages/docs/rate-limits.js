@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -54,8 +55,15 @@ const RateLimits = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/rate-limits"
+    <>
+      <SEO
+        title="Rate Limits - Otto Africa API Documentation"
+        description="Learn about Otto Africa API rate limits, how to handle rate limit errors, and best practices for API usage."
+        keywords="API rate limits, rate limiting, API throttling, request limits, Otto rate limits"
+        url="https://ottoafrica.com/docs/rate-limits"
+      />
+      <DocsLayout
+        currentPage="/docs/rate-limits"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -286,6 +294,7 @@ def make_request_with_retry(url, headers, data, max_retries=3):
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

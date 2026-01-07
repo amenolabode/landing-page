@@ -70,7 +70,7 @@ const DocsLayout = ({
               Docs
             </Link>
             <a
-              href="https://api.otto.com/docs"
+              href="https://api.ottoafrica.com/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="docs-nav-link"

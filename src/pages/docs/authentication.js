@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -58,8 +59,15 @@ const Authentication = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/authentication"
+    <>
+      <SEO
+        title="Authentication - Otto Africa API Documentation"
+        description="Learn how to authenticate with Otto Africa API using API keys. Understand test vs production keys and how to securely make API requests."
+        keywords="Otto API authentication, API keys, Bearer token, API security, test API keys, production API keys"
+        url="https://ottoafrica.com/docs/authentication"
+      />
+      <DocsLayout
+        currentPage="/docs/authentication"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -128,7 +136,7 @@ const Authentication = () => {
 
         <div className="docs-alert info">
           <strong>Same Endpoint:</strong> Both test and live keys use the same API endpoint
-          (<code>https://api.otto.com</code>). The environment is automatically determined by the key prefix.
+          (<code>https://api.ottoafrica.com</code>). The environment is automatically determined by the key prefix.
         </div>
 
         <p>
@@ -246,7 +254,7 @@ const Authentication = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="bash"
-                  code={`curl -X GET "https://api.otto.com/v1/merchant/transactions" \\
+                  code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/transactions" \\
   -H "Authorization: Bearer your_api_key_here" \\
   -H "Content-Type: application/json"`}
                 />
@@ -256,7 +264,7 @@ const Authentication = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="javascript"
-                  code={`const response = await fetch('https://api.otto.com/v1/merchant/transactions', {
+                  code={`const response = await fetch('https://api.ottoafrica.com/v1/merchant/transactions', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer your_api_key_here',
@@ -273,7 +281,7 @@ const Authentication = () => {
                   code={`import requests
 
 response = requests.get(
-    'https://api.otto.com/v1/merchant/transactions',
+    'https://api.ottoafrica.com/v1/merchant/transactions',
     headers={
         'Authorization': 'Bearer your_api_key_here',
         'Content-Type': 'application/json'
@@ -400,7 +408,7 @@ response = requests.get(
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/health" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/health" \\
   -H "Authorization: Bearer your_api_key_here"`}
         />
 
@@ -411,10 +419,11 @@ response = requests.get(
 
         <div className="docs-alert info">
           <strong>Need Help?</strong> Visit our <a href="/docs/support" className="underline">Support page</a> or
-          check the <a href="https://api.otto.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for detailed endpoint documentation.
+          check the <a href="https://api.ottoafrica.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for detailed endpoint documentation.
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

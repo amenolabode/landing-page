@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -55,8 +56,15 @@ const Webhooks = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/webhooks"
+    <>
+      <SEO
+        title="Webhooks - Otto Africa API Documentation"
+        description="Learn how to configure and use webhooks to receive real-time notifications for payment events, gift card redemptions, and loyalty program activities."
+        keywords="Otto webhooks, webhook configuration, webhook events, payment webhooks, real-time notifications"
+        url="https://ottoafrica.com/docs/webhooks"
+      />
+      <DocsLayout
+        currentPage="/docs/webhooks"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -100,7 +108,7 @@ const Webhooks = () => {
 
         <CodeBlock
           language="bash"
-          code={`curl -X POST "https://api.otto.com/v1/merchant/webhooks" \\
+          code={`curl -X POST "https://api.ottoafrica.com/v1/merchant/webhooks" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -250,11 +258,12 @@ function verifyWebhookSignature(payload, signature, secret) {
         </p>
 
         <div className="docs-alert success">
-          <strong>Need Help?</strong> Check the <a href="https://api.otto.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
+          <strong>Need Help?</strong> Check the <a href="https://api.ottoafrica.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
           or visit our <a href="/docs/support" className="underline">Support page</a>.
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

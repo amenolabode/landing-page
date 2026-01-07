@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -54,8 +55,15 @@ const ErrorHandling = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/error-handling"
+    <>
+      <SEO
+        title="Error Handling - Otto Africa API Documentation"
+        description="Learn how to handle errors and exceptions when using Otto Africa API. Complete error handling guide with examples."
+        keywords="API error handling, error codes, exception handling, API errors, Otto error handling"
+        url="https://ottoafrica.com/docs/error-handling"
+      />
+      <DocsLayout
+        currentPage="/docs/error-handling"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -227,7 +235,7 @@ const ErrorHandling = () => {
           language="javascript"
           code={`async function makeRequest() {
   try {
-    const response = await fetch('https://api.otto.com/v1/merchant/giftcards', {
+    const response = await fetch('https://api.ottoafrica.com/v1/merchant/giftcards', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer your_api_key',
@@ -274,7 +282,7 @@ const ErrorHandling = () => {
 
 try:
     response = requests.post(
-        'https://api.otto.com/v1/merchant/giftcards',
+        'https://api.ottoafrica.com/v1/merchant/giftcards',
         headers={
             'Authorization': 'Bearer your_api_key',
             'Content-Type': 'application/json'
@@ -340,6 +348,7 @@ except requests.exceptions.RequestException as e:
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

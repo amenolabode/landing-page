@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -56,8 +57,15 @@ const Loyalty = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/loyalty"
+    <>
+      <SEO
+        title="Loyalty Programs API - Otto Africa API Documentation"
+        description="Learn how to create and manage loyalty programs, award points, and handle rewards using Otto Africa API."
+        keywords="loyalty program API, points system, customer rewards, loyalty points, Otto loyalty programs"
+        url="https://ottoafrica.com/docs/loyalty"
+      />
+      <DocsLayout
+        currentPage="/docs/loyalty"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -112,7 +120,7 @@ const Loyalty = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="bash"
-                  code={`curl -X POST "https://api.otto.com/v1/merchant/loyalty/programs" \\
+                  code={`curl -X POST "https://api.ottoafrica.com/v1/merchant/loyalty/programs" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -131,7 +139,7 @@ const Loyalty = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="javascript"
-                  code={`const response = await fetch('https://api.otto.com/v1/merchant/loyalty/programs', {
+                  code={`const response = await fetch('https://api.ottoafrica.com/v1/merchant/loyalty/programs', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer your_api_key',
@@ -159,7 +167,7 @@ const data = await response.json();`}
                   code={`import requests
 
 response = requests.post(
-    'https://api.otto.com/v1/merchant/loyalty/programs',
+    'https://api.ottoafrica.com/v1/merchant/loyalty/programs',
     headers={
         'Authorization': 'Bearer your_api_key',
         'Content-Type': 'application/json'
@@ -193,7 +201,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/loyalty/programs" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/loyalty/programs" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -208,7 +216,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X PUT "https://api.otto.com/v1/merchant/loyalty/programs/123" \\
+          code={`curl -X PUT "https://api.ottoafrica.com/v1/merchant/loyalty/programs/123" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -254,7 +262,7 @@ data = response.json()`}
               <div className="tab-pane">
                 <CodeBlock
                   language="bash"
-                  code={`curl -X POST "https://api.otto.com/v1/merchant/loyalty/points/add" \\
+                  code={`curl -X POST "https://api.ottoafrica.com/v1/merchant/loyalty/points/add" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -270,7 +278,7 @@ data = response.json()`}
               <div className="tab-pane">
                 <CodeBlock
                   language="javascript"
-                  code={`const response = await fetch('https://api.otto.com/v1/merchant/loyalty/points/add', {
+                  code={`const response = await fetch('https://api.ottoafrica.com/v1/merchant/loyalty/points/add', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer your_api_key',
@@ -295,7 +303,7 @@ const data = await response.json();`}
                   code={`import requests
 
 response = requests.post(
-    'https://api.otto.com/v1/merchant/loyalty/points/add',
+    'https://api.ottoafrica.com/v1/merchant/loyalty/points/add',
     headers={
         'Authorization': 'Bearer your_api_key',
         'Content-Type': 'application/json'
@@ -326,7 +334,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X POST "https://api.otto.com/v1/merchant/loyalty/points/redeem" \\
+          code={`curl -X POST "https://api.ottoafrica.com/v1/merchant/loyalty/points/redeem" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -374,7 +382,7 @@ data = response.json()`}
               <div className="tab-pane">
                 <CodeBlock
                   language="bash"
-                  code={`curl -X POST "https://api.otto.com/v1/merchant/loyalty/programs/123/rewards" \\
+                  code={`curl -X POST "https://api.ottoafrica.com/v1/merchant/loyalty/programs/123/rewards" \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -393,7 +401,7 @@ data = response.json()`}
               <div className="tab-pane">
                 <CodeBlock
                   language="javascript"
-                  code={`const response = await fetch('https://api.otto.com/v1/merchant/loyalty/programs/123/rewards', {
+                  code={`const response = await fetch('https://api.ottoafrica.com/v1/merchant/loyalty/programs/123/rewards', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer your_api_key',
@@ -421,7 +429,7 @@ const data = await response.json();`}
                   code={`import requests
 
 response = requests.post(
-    'https://api.otto.com/v1/merchant/loyalty/programs/123/rewards',
+    'https://api.ottoafrica.com/v1/merchant/loyalty/programs/123/rewards',
     headers={
         'Authorization': 'Bearer your_api_key',
         'Content-Type': 'application/json'
@@ -489,7 +497,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/loyalty/programs/123/rewards" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/loyalty/programs/123/rewards" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -506,7 +514,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/loyalty/rewards/456/analytics" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/loyalty/rewards/456/analytics" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -527,7 +535,7 @@ data = response.json()`}
         <div className="docs-alert success">
           <strong>Need Help?</strong> Check the{" "}
           <a
-            href="https://api.otto.com/v1/docs"
+            href="https://api.ottoafrica.com/v1/docs"
             className="underline"
             target="_blank"
             rel="noopener noreferrer"
@@ -542,6 +550,7 @@ data = response.json()`}
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

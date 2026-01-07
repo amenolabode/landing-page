@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -54,8 +55,15 @@ const SDKs = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/sdks"
+    <>
+      <SEO
+        title="SDKs & Libraries - Otto Africa API Documentation"
+        description="Discover official and community SDKs for integrating Otto Africa API in various programming languages."
+        keywords="Otto SDK, API libraries, SDK download, programming language SDKs, Otto integrations"
+        url="https://ottoafrica.com/docs/sdks"
+      />
+      <DocsLayout
+        currentPage="/docs/sdks"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -327,6 +335,7 @@ $transactions = $otto->transactions()->list([
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

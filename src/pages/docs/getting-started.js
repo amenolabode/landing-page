@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import MultiLanguageCodeBlock from '../../components/MultiLanguageCodeBlock';
 import './docs.css';
 
@@ -56,8 +57,15 @@ const GettingStarted = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/getting-started"
+    <>
+      <SEO
+        title="Getting Started - Otto Africa API Documentation"
+        description="Get started with Otto Africa API. Learn how to create API keys, make your first API call, and integrate payments, gift cards, and loyalty programs."
+        keywords="Otto API getting started, API integration guide, create API key, first API call, payment integration"
+        url="https://ottoafrica.com/docs/getting-started"
+      />
+      <DocsLayout
+        currentPage="/docs/getting-started"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -155,10 +163,10 @@ const GettingStarted = () => {
 
         <MultiLanguageCodeBlock
           examples={{
-            curl: `curl -X GET "https://api.otto.com/merchant/transactions" \\
+            curl: `curl -X GET "https://api.ottoafrica.com/merchant/transactions" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json"`,
-            javascript: `const response = await fetch('https://api.otto.com/merchant/transactions', {
+            javascript: `const response = await fetch('https://api.ottoafrica.com/merchant/transactions', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
@@ -171,7 +179,7 @@ console.log(data);`,
             python: `import requests
 
 response = requests.get(
-    'https://api.otto.com/merchant/transactions',
+    'https://api.ottoafrica.com/merchant/transactions',
     headers={
         'Authorization': 'Bearer YOUR_API_KEY',
         'Content-Type': 'application/json'
@@ -201,7 +209,7 @@ print(data)`
 
         <MultiLanguageCodeBlock
           examples={{
-            curl: `curl -X POST "https://api.otto.com/merchant/giftcard-templates" \\
+            curl: `curl -X POST "https://api.ottoafrica.com/merchant/giftcard-templates" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -211,7 +219,7 @@ print(data)`
     "currency": "GHS",
     "expires_in_days": 365
   }'`,
-            javascript: `const response = await fetch('https://api.otto.com/merchant/giftcard-templates', {
+            javascript: `const response = await fetch('https://api.ottoafrica.com/merchant/giftcard-templates', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
@@ -231,7 +239,7 @@ console.log(data);`,
             python: `import requests
 
 response = requests.post(
-    'https://api.otto.com/merchant/giftcard-templates',
+    'https://api.ottoafrica.com/merchant/giftcard-templates',
     headers={
         'Authorization': 'Bearer YOUR_API_KEY',
         'Content-Type': 'application/json'
@@ -286,7 +294,7 @@ print(data)`
 
         <ul className="list-disc list-inside space-y-2 mb-6">
           <li>Replace test API keys (starting with <code>sk_test_</code>) with live keys (starting with <code>sk_live_</code>)</li>
-          <li>The API endpoint remains the same: <code>https://api.otto.com</code></li>
+          <li>The API endpoint remains the same: <code>https://api.ottoafrica.com</code></li>
           <li>Update webhook URLs to production endpoints</li>
           <li>Implement proper error handling and retries</li>
           <li>Monitor your API usage in the Merchant Portal</li>
@@ -323,10 +331,11 @@ print(data)`
 
         <div className="docs-alert success">
           <strong>Need Help?</strong> Check out our <a href="/docs/support" className="underline">Support page</a> or
-          visit the <a href="https://api.otto.com/api/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for detailed documentation.
+          visit the <a href="https://api.ottoafrica.com/api/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for detailed documentation.
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

@@ -169,7 +169,7 @@ const Pricing = () => {
                 </ul>
 
                 <a
-                  href={plan.cta === "Contact Us" ? "/contact" : "https://merchant.otto.com/signup"}
+                  href={plan.cta === "Contact Us" ? "/contact" : "https://merchant.ottoafrica.com/signup"}
                   className={`block w-full text-center py-3 px-6 rounded-lg font-semibold transition-colors duration-200 ${
                     plan.popular
                       ? 'bg-blue-600 text-white hover:bg-blue-700'
@@ -270,7 +270,7 @@ const Pricing = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://merchant.otto.com/signup"
+              href="https://merchant.ottoafrica.com/signup"
               className="bg-white text-otto-blue px-8 py-4 rounded-full hover:bg-gray-50 transition-colors duration-200 font-semibold text-lg"
             >
               Start Accepting Payments

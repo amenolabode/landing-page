@@ -27,7 +27,7 @@ const BusinessSolutions = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://merchant.otto.com/signup"
+                href="https://merchant.ottoafrica.com/signup"
                 className="bg-otto-blue text-white px-8 py-4 rounded-full hover:bg-black transition-colors duration-200 font-semibold text-lg"
               >
                 Start Enterprise Trial
@@ -289,7 +289,7 @@ const BusinessSolutions = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://merchant.otto.com/demo"
+              href="https://merchant.ottoafrica.com/demo"
               className="bg-white text-otto-blue px-8 py-4 rounded-full hover:bg-gray-50 transition-colors duration-200 font-semibold text-lg"
             >
               Schedule Demo

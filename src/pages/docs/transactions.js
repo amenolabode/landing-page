@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import MultiLanguageCodeBlock from '../../components/MultiLanguageCodeBlock';
 import './docs.css';
@@ -56,8 +57,15 @@ const Transactions = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/transactions"
+    <>
+      <SEO
+        title="Transactions API - Otto Africa API Documentation"
+        description="Learn how to retrieve, filter, and manage payment transactions using Otto Africa API. Complete transaction management guide."
+        keywords="transaction API, payment transactions, transaction history, payment records, Otto transactions"
+        url="https://ottoafrica.com/docs/transactions"
+      />
+      <DocsLayout
+        currentPage="/docs/transactions"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -92,9 +100,9 @@ const Transactions = () => {
 
         <MultiLanguageCodeBlock
           examples={{
-            curl: `curl -X GET "https://api.otto.com/merchant/transactions?page=1&per_page=20" \\
+            curl: `curl -X GET "https://api.ottoafrica.com/merchant/transactions?page=1&per_page=20" \\
   -H "Authorization: Bearer your_api_key"`,
-            javascript: `const response = await fetch('https://api.otto.com/merchant/transactions?page=1&per_page=20', {
+            javascript: `const response = await fetch('https://api.ottoafrica.com/merchant/transactions?page=1&per_page=20', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer your_api_key',
@@ -106,7 +114,7 @@ const data = await response.json();`,
             python: `import requests
 
 response = requests.get(
-    'https://api.otto.com/merchant/transactions',
+    'https://api.ottoafrica.com/merchant/transactions',
     headers={
         'Authorization': 'Bearer your_api_key',
         'Content-Type': 'application/json'
@@ -212,7 +220,7 @@ data = response.json()`
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/merchant/transactions/txn_1234567890" \\
+          code={`curl -X GET "https://api.ottoafrica.com/merchant/transactions/txn_1234567890" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -250,11 +258,11 @@ data = response.json()`
         <CodeBlock
           language="bash"
           code={`# Filter by status and date range
-curl -X GET "https://api.otto.com/merchant/transactions?status=completed&date_from=2024-01-01&date_to=2024-01-31" \\
+curl -X GET "https://api.ottoafrica.com/merchant/transactions?status=completed&date_from=2024-01-01&date_to=2024-01-31" \\
   -H "Authorization: Bearer your_api_key"
 
 # Paginate through results
-curl -X GET "https://api.otto.com/merchant/transactions?page=2&per_page=50" \\
+curl -X GET "https://api.ottoafrica.com/merchant/transactions?page=2&per_page=50" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -264,11 +272,12 @@ curl -X GET "https://api.otto.com/merchant/transactions?page=2&per_page=50" \\
         </div>
 
         <div className="docs-alert success">
-          <strong>Need Help?</strong> Check the <a href="https://api.otto.com/api/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
+          <strong>Need Help?</strong> Check the <a href="https://api.ottoafrica.com/api/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
           or visit our <a href="/docs/support" className="underline">Support page</a>.
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

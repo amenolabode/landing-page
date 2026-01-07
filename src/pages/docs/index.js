@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DocsLayout from "../../layout/DocsLayout";
+import SEO from "../../components/SEO";
 import "./docs.css";
 
 const DocsIndex = () => {
@@ -46,7 +47,14 @@ const DocsIndex = () => {
   ];
 
   return (
-    <DocsLayout currentPage="/docs" sidebarItems={sidebarItems}>
+    <>
+      <SEO
+        title="API Documentation - Otto Africa"
+        description="Complete API documentation for Otto Africa. Learn how to integrate payments, gift cards, loyalty programs, and QR codes into your application."
+        keywords="Otto API documentation, payment API, gift card API, loyalty program API, QR code API, Africa payments API"
+        url="https://ottoafrica.com/docs"
+      />
+      <DocsLayout currentPage="/docs" sidebarItems={sidebarItems}>
       <div className="docs-content">
         {/* Getting Started Section */}
         <section className="mb-16">
@@ -500,6 +508,7 @@ const DocsIndex = () => {
         </section>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

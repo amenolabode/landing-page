@@ -266,7 +266,7 @@ const Contact = () => {
           <div className="space-y-6">
             <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '200ms' }}>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I get started with Otto?</h3>
-              <p className="text-gray-600">Sign up for a free account at merchant.otto.com and start processing payments immediately. Our onboarding process takes less than 10 minutes.</p>
+              <p className="text-gray-600">Sign up for a free account at merchant.ottoafrica.com and start processing payments immediately. Our onboarding process takes less than 10 minutes.</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '300ms' }}>

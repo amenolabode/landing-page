@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -56,8 +57,15 @@ const Settlements = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/settlements"
+    <>
+      <SEO
+        title="Settlements API - Otto Africa API Documentation"
+        description="Learn how to track settlements, view balance, and manage payouts using Otto Africa API. Complete settlements guide."
+        keywords="settlements API, payout management, settlement balance, payment settlements, Otto settlements"
+        url="https://ottoafrica.com/docs/settlements"
+      />
+      <DocsLayout
+        currentPage="/docs/settlements"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -109,7 +117,7 @@ const Settlements = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="bash"
-                  code={`curl -X GET "https://api.otto.com/v1/merchant/settlements?page=1&per_page=10&status=paid" \\
+                  code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/settlements?page=1&per_page=10&status=paid" \\
   -H "Authorization: Bearer your_api_key"`}
                 />
               </div>
@@ -118,7 +126,7 @@ const Settlements = () => {
               <div className="tab-pane">
                 <CodeBlock
                   language="javascript"
-                  code={`const response = await fetch('https://api.otto.com/v1/merchant/settlements?page=1&per_page=10&status=paid', {
+                  code={`const response = await fetch('https://api.ottoafrica.com/v1/merchant/settlements?page=1&per_page=10&status=paid', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer your_api_key',
@@ -137,7 +145,7 @@ const data = await response.json();`}
                   code={`import requests
 
 response = requests.get(
-    'https://api.otto.com/v1/merchant/settlements',
+    'https://api.ottoafrica.com/v1/merchant/settlements',
     headers={
         'Authorization': 'Bearer your_api_key',
         'Content-Type': 'application/json'
@@ -239,7 +247,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/settlements/settlement_123" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/settlements/settlement_123" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -275,7 +283,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/settlements/balance" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/settlements/balance" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -306,7 +314,7 @@ data = response.json()`}
 
         <CodeBlock
           language="bash"
-          code={`curl -X GET "https://api.otto.com/v1/merchant/settlements/upcoming" \\
+          code={`curl -X GET "https://api.ottoafrica.com/v1/merchant/settlements/upcoming" \\
   -H "Authorization: Bearer your_api_key"`}
         />
 
@@ -318,7 +326,7 @@ data = response.json()`}
         <div className="docs-alert success">
           <strong>Need Help?</strong> Check the{" "}
           <a
-            href="https://api.otto.com/v1/docs"
+            href="https://api.ottoafrica.com/v1/docs"
             className="underline"
             target="_blank"
             rel="noopener noreferrer"
@@ -333,6 +341,7 @@ data = response.json()`}
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 

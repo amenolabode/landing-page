@@ -1,5 +1,6 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
+import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
@@ -55,8 +56,15 @@ const Testing = () => {
   ];
 
   return (
-    <DocsLayout
-      currentPage="/docs/testing"
+    <>
+      <SEO
+        title="Testing - Otto Africa API Documentation"
+        description="Learn how to test your Otto Africa API integration using test API keys and test mode. Complete testing guide."
+        keywords="API testing, test mode, test API keys, integration testing, Otto API testing"
+        url="https://ottoafrica.com/docs/testing"
+      />
+      <DocsLayout
+        currentPage="/docs/testing"
       sidebarItems={sidebarItems}
       onThisPageItems={onThisPageItems}
     >
@@ -84,7 +92,7 @@ const Testing = () => {
         <div className="bg-green-50 p-6 rounded-lg mb-6">
           <h4 className="font-semibold text-green-900 mb-2">🧪 How It Works</h4>
           <ul className="text-green-800 text-sm space-y-2 list-disc list-inside">
-            <li>Use the same API endpoint: <code className="bg-green-100 px-2 py-1 rounded">https://api.otto.com</code></li>
+            <li>Use the same API endpoint: <code className="bg-green-100 px-2 py-1 rounded">https://api.ottoafrica.com</code></li>
             <li>Test keys (starting with <code>sk_test_</code>) automatically route to test environment</li>
             <li>Live keys (starting with <code>sk_live_</code>) route to production environment</li>
             <li>No need to change URLs or endpoints when switching environments</li>
@@ -115,11 +123,11 @@ const Testing = () => {
         <CodeBlock
           language="bash"
           code={`# Test environment - uses test databases
-curl -X GET "https://api.otto.com/v1/merchant/giftcards" \\
+curl -X GET "https://api.ottoafrica.com/v1/merchant/giftcards" \\
   -H "Authorization: Bearer sk_test_your_test_key_here"
 
 # Production environment - uses live databases
-curl -X GET "https://api.otto.com/v1/merchant/giftcards" \\
+curl -X GET "https://api.ottoafrica.com/v1/merchant/giftcards" \\
   -H "Authorization: Bearer sk_live_your_live_key_here"`}
         />
 
@@ -229,7 +237,7 @@ curl -X GET "https://api.otto.com/v1/merchant/giftcards" \\
           <h4 className="font-semibold text-red-900 mb-2">🚨 Important</h4>
           <p className="text-red-800 text-sm mb-4">
             Replace all test API keys with live keys before going to production. The API endpoint
-            remains the same (<code>https://api.otto.com</code>), but you must use live keys.
+            remains the same (<code>https://api.ottoafrica.com</code>), but you must use live keys.
           </p>
           <ul className="text-red-800 text-sm space-y-1">
             <li>• Replace test API keys (starting with <code>sk_test_</code>) with live keys (starting with <code>sk_live_</code>)</li>
@@ -241,11 +249,12 @@ curl -X GET "https://api.otto.com/v1/merchant/giftcards" \\
         </div>
 
         <div className="docs-alert success">
-          <strong>Need Help?</strong> Check the <a href="https://api.otto.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
+          <strong>Need Help?</strong> Check the <a href="https://api.ottoafrica.com/v1/docs" className="underline" target="_blank" rel="noopener noreferrer">API Reference</a> for complete endpoint documentation,
           or visit our <a href="/docs/support" className="underline">Support page</a>.
         </div>
       </div>
     </DocsLayout>
+    </>
   );
 };
 
