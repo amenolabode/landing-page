@@ -1,19 +1,25 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const BusinessSolutions = () => {
+  const heroRef = useScrollAnimation({ threshold: 0.1 });
+  const featuresRef = useScrollAnimation({ threshold: 0.1 });
+  const useCasesRef = useScrollAnimation({ threshold: 0.1 });
+  const enterpriseRef = useScrollAnimation({ threshold: 0.1 });
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-white">
+      <section ref={heroRef} className="pt-20 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-900 mb-6 scroll-animate">
               Payment Solutions for
-              <span className="block text-otto-blue">Modern Businesses</span>
+              <span className="block text-otto-blue font-medium">Modern Businesses</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Scale your business with enterprise-grade payment processing, advanced analytics,
@@ -38,10 +44,10 @@ const BusinessSolutions = () => {
       </section>
 
       {/* Key Benefits */}
-      <section id="features" className="py-20 bg-white">
+      <section ref={featuresRef} id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
+            <div className="text-center scroll-animate" style={{ animationDelay: '100ms' }}>
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-otto-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -51,7 +57,7 @@ const BusinessSolutions = () => {
               <p className="text-gray-600">Handle thousands of transactions daily with enterprise-grade infrastructure</p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center scroll-animate" style={{ animationDelay: '200ms' }}>
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -61,7 +67,7 @@ const BusinessSolutions = () => {
               <p className="text-gray-600">Real-time dashboards and detailed reporting for data-driven decisions</p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center scroll-animate" style={{ animationDelay: '300ms' }}>
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -71,7 +77,7 @@ const BusinessSolutions = () => {
               <p className="text-gray-600">Role-based access control and staff performance tracking</p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center scroll-animate" style={{ animationDelay: '400ms' }}>
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -85,15 +91,15 @@ const BusinessSolutions = () => {
       </section>
 
       {/* Use Cases */}
-      <section className="py-20 bg-gray-50">
+      <section ref={useCasesRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Built for Every Business Type</h2>
-            <p className="text-xl text-gray-600">From startups to Fortune 500 companies</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 scroll-animate">Built for Every Business Type</h2>
+            <p className="text-xl text-gray-600 scroll-animate delay-100">From startups to Fortune 500 companies</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-8 border border-gray-200">
+            <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-8 border border-gray-200 scroll-animate" style={{ animationDelay: '200ms' }}>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
                 <svg className="w-6 h-6 text-otto-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -194,11 +200,11 @@ const BusinessSolutions = () => {
       </section>
 
       {/* Enterprise Features */}
-      <section className="py-20 bg-white">
+      <section ref={enterpriseRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Enterprise-Grade Features</h2>
-            <p className="text-xl text-gray-600">Built for scale, security, and compliance</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 scroll-animate">Enterprise-Grade Features</h2>
+            <p className="text-xl text-gray-600 scroll-animate delay-100">Built for scale, security, and compliance</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">

@@ -156,7 +156,7 @@ response = requests.post(
 
 data = response.json()`
           }}
-        />
+                />
 
         <h3>Template Parameters</h3>
 
@@ -331,7 +331,7 @@ response = requests.post(
 
 data = response.json()`
           }}
-        />
+                />
 
         <h3>Redemption Flow</h3>
 

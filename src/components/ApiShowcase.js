@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ApiShowcase = () => {
   const [activeTab, setActiveTab] = useState('create-gift-card');
   const [selectedLanguage, setSelectedLanguage] = useState('curl');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const showcaseRef = useScrollAnimation({ threshold: 0.1 });
 
   const codeExamples = {
     'create-gift-card': {
@@ -143,30 +145,31 @@ result = response.json()`
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section ref={showcaseRef} className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 scroll-animate">
             Simple, Powerful API
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto scroll-animate delay-100">
             Get started quickly with our comprehensive API. Here are some common operations.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Code Example Selector */}
-          <div>
+          <div className="scroll-animate delay-200">
             <div className="space-y-4 mb-6">
-              {Object.entries(codeExamples).map(([key, example]) => (
+              {Object.entries(codeExamples).map(([key, example], index) => (
                 <button
                   key={key}
                   onClick={() => setActiveTab(key)}
-                  className={`w-full text-left p-4 rounded-lg border transition-colors duration-200 ${
+                  className={`w-full text-left p-4 rounded-lg border transition-all duration-300 transform hover:scale-[1.02] scroll-animate ${
                     activeTab === key
-                      ? 'border-otto-blue bg-gray-50'
+                      ? 'border-otto-blue bg-gray-50 shadow-md'
                       : 'border-gray-200 bg-white hover:border-otto-blue'
                   }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <h3 className={`font-medium ${activeTab === key ? 'text-otto-blue' : 'text-gray-900'}`}>
                     {example.title}
@@ -192,12 +195,12 @@ result = response.json()`
           </div>
 
           {/* Code Display */}
-          <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
+          <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-lg scroll-animate delay-300">
             <div className="border-b border-gray-200 px-6 py-4">
               <div className="flex justify-between items-center">
                 {/* Language Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <button
+                <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
                     aria-label="Select language"
@@ -210,7 +213,7 @@ result = response.json()`
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
-                    >
+                >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -218,14 +221,14 @@ result = response.json()`
                         d="M19 9l-7 7-7-7"
                       />
                     </svg>
-                  </button>
+                </button>
 
                   {/* Dropdown Menu */}
                   {isDropdownOpen && (
                     <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                       <div className="py-1">
                         {languages.map((lang) => (
-                          <button
+                <button
                             key={lang.key}
                             onClick={() => {
                               setSelectedLanguage(lang.key);
@@ -236,9 +239,9 @@ result = response.json()`
                                 ? 'bg-gray-50 text-otto-blue font-medium'
                                 : 'text-gray-700 hover:bg-gray-50'
                             }`}
-                          >
+                >
                             {lang.label}
-                          </button>
+                </button>
                         ))}
                       </div>
                     </div>

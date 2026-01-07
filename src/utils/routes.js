@@ -1,11 +1,6 @@
 export const paths = {
 	LANDING_PAGE: "/",
 
-	// Products
-	PRODUCTS_QR_PAYMENTS: "/products/qr-payments",
-	PRODUCTS_GIFT_CARDS: "/products/gift-cards",
-	PRODUCTS_LOYALTY: "/products/loyalty",
-
 	// Solutions
 	SOLUTIONS_BUSINESS: "/solutions/business",
 	SOLUTIONS_PERSONAL: "/solutions/personal",

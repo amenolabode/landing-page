@@ -119,7 +119,7 @@ response = requests.get(
 
 data = response.json()`
           }}
-        />
+                />
 
         <h3>Query Parameters</h3>
 

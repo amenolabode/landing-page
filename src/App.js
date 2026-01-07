@@ -4,11 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Main pages
 import Landing from "./pages/Landing";
 
-// Product pages
-import QRPayments from "./pages/QRPayments";
-import GiftCards from "./pages/GiftCards";
-import Loyalty from "./pages/Loyalty";
-
 // Solution pages
 import BusinessSolutions from "./pages/BusinessSolutions";
 import PersonalSolutions from "./pages/PersonalSolutions";
@@ -43,11 +38,6 @@ function App() {
       <Routes>
         {/* Main landing page */}
         <Route path={paths.LANDING_PAGE} element={<Landing />} />
-
-        {/* Product pages */}
-        <Route path={paths.PRODUCTS_QR_PAYMENTS} element={<QRPayments />} />
-        <Route path={paths.PRODUCTS_GIFT_CARDS} element={<GiftCards />} />
-        <Route path={paths.PRODUCTS_LOYALTY} element={<Loyalty />} />
 
         {/* Solution pages */}
         <Route

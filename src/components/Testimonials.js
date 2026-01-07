@@ -1,6 +1,8 @@
 import React from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Testimonials = () => {
+  const testimonialsRef = useScrollAnimation({ threshold: 0.1 });
   const testimonials = [
     {
       quote: "Otto transformed our payment process. Our customers love the QR payment system - it's fast, secure, and incredibly easy to use.",
@@ -33,20 +35,20 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section ref={testimonialsRef} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 scroll-animate">
             Loved by Businesses Across Ghana
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto scroll-animate delay-100">
             See what our customers say about transforming their business with Otto.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-xl p-8 border border-gray-100">
+            <div key={index} className="bg-white rounded-xl p-8 border border-gray-100 scroll-animate hover:shadow-lg transition-shadow duration-300" style={{ animationDelay: `${index * 100}ms` }}>
               <div className="flex items-start mb-6">
                 <div className="flex-shrink-0">
                   <img
@@ -75,29 +77,6 @@ const Testimonials = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-8 border border-gray-100 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Join Thousands of Happy Customers</h3>
-            <p className="text-gray-600 mb-6">
-              Ready to transform your business? Join the growing community of businesses using Otto.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://merchant.otto.com/signup"
-                className="bg-otto-blue text-white px-8 py-4 rounded-full hover:bg-black transition-colors duration-200 font-semibold"
-              >
-                Get Started
-              </a>
-              <a
-                href="#contact"
-                className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-otto-blue hover:text-otto-blue transition-colors duration-200 font-semibold"
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

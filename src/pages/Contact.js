@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Contact = () => {
+  const heroRef = useScrollAnimation({ threshold: 0.1 });
+  const formRef = useScrollAnimation({ threshold: 0.1 });
+  const faqRef = useScrollAnimation({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,14 +34,14 @@ const Contact = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section ref={heroRef} className="pt-20 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-900 mb-6 scroll-animate">
               Let's Build Something
-              <span className="block text-blue-600">Together</span>
+              <span className="block text-otto-blue font-medium">Together</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 mb-8 scroll-animate delay-100">
               Have questions about Otto? Need help getting started? Want to explore partnership opportunities?
               We'd love to hear from you.
             </p>
@@ -46,12 +50,12 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-white">
+      <section ref={formRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a message</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 scroll-animate">Send us a message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -151,7 +155,7 @@ const Contact = () => {
 
             {/* Contact Info & Support Options */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in touch</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 scroll-animate delay-200">Get in touch</h2>
 
               <div className="space-y-8">
                 {/* Support Options */}
@@ -246,30 +250,30 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section ref={faqRef} className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">Quick answers to common questions</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 scroll-animate">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600 scroll-animate delay-100">Quick answers to common questions</p>
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '200ms' }}>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I get started with Otto?</h3>
               <p className="text-gray-600">Sign up for a free account at merchant.otto.com and start processing payments immediately. Our onboarding process takes less than 10 minutes.</p>
             </div>
 
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '300ms' }}>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">What are the fees for using Otto?</h3>
               <p className="text-gray-600">We offer competitive pricing with no setup fees. Transaction fees vary by product - QR payments are free, while gift cards and loyalty programs have monthly subscriptions starting from ₵50.</p>
             </div>
 
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '400ms' }}>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Is Otto secure?</h3>
               <p className="text-gray-600">Yes, Otto is PCI DSS Level 1 compliant and uses bank-grade encryption. We employ multiple layers of security including end-to-end encryption, fraud detection, and regular security audits.</p>
             </div>
 
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 scroll-animate" style={{ animationDelay: '500ms' }}>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you support international payments?</h3>
               <p className="text-gray-600">Currently, Otto focuses on the Ghanaian market with support for major local payment methods. We're expanding to other African countries soon.</p>
             </div>

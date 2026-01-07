@@ -1,18 +1,22 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const PersonalSolutions = () => {
+  const heroRef = useScrollAnimation({ threshold: 0.1 });
+  const featuresRef = useScrollAnimation({ threshold: 0.1 });
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
         {/* Hero Section */}
-        <section className="pt-20 pb-16 bg-white">
+        <section ref={heroRef} className="pt-20 pb-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-light text-gray-900 mb-6 leading-tight scroll-animate">
                 Payment Solutions for
-                <span className="block text-otto-blue">Everyone</span>
+                <span className="block text-otto-blue font-medium">Everyone</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Simple, secure, and convenient payment solutions designed for individuals.
@@ -23,19 +27,19 @@ const PersonalSolutions = () => {
         </section>
 
         {/* Personal Features */}
-        <section className="py-20 bg-white">
+        <section ref={featuresRef} className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 scroll-animate">
                 Built for Personal Finance
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto scroll-animate delay-100">
                 Experience the convenience of modern payments with features designed for your everyday financial needs.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl border border-gray-100">
+              <div className="bg-white p-8 rounded-xl border border-gray-100 scroll-animate" style={{ animationDelay: '200ms' }}>
                 <div className="w-16 h-16 bg-otto-blue rounded-full flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M12 15h4.01M12 21h4.01M12 18h4.01M12 9h4.01M12 6h4.01" />
@@ -67,7 +71,7 @@ const PersonalSolutions = () => {
                 </ul>
               </div>
 
-              <div className="bg-white p-8 rounded-xl border border-gray-100">
+              <div className="bg-white p-8 rounded-xl border border-gray-100 scroll-animate" style={{ animationDelay: '300ms' }}>
                 <div className="w-16 h-16 bg-otto-blue rounded-full flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -99,7 +103,7 @@ const PersonalSolutions = () => {
                 </ul>
               </div>
 
-              <div className="bg-white p-8 rounded-xl border border-gray-100">
+              <div className="bg-white p-8 rounded-xl border border-gray-100 scroll-animate" style={{ animationDelay: '400ms' }}>
                 <div className="w-16 h-16 bg-otto-blue rounded-full flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

@@ -1,6 +1,5 @@
 import React from 'react';
 import DocsLayout from '../../layout/DocsLayout';
-import CodeBlock from '../../components/CodeBlock';
 import MultiLanguageCodeBlock from '../../components/MultiLanguageCodeBlock';
 import './docs.css';
 
@@ -182,7 +181,7 @@ response = requests.get(
 data = response.json()
 print(data)`
           }}
-        />
+                />
 
         <p>
           Replace <code>YOUR_API_KEY</code> with the API key you created in Step 1.
@@ -249,7 +248,7 @@ response = requests.post(
 data = response.json()
 print(data)`
           }}
-        />
+                />
 
         <div className="docs-alert info">
           <strong>Expected Response:</strong> You should receive a 201 Created response with the gift card template details,

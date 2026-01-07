@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const solutionsRef = useRef(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (solutionsRef.current && !solutionsRef.current.contains(event.target)) {
+        setIsSolutionsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -23,55 +37,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <div className="relative">
+            <div className="relative" ref={solutionsRef}>
               <button
-                onMouseEnter={() => setIsProductsOpen(true)}
-                onMouseLeave={() => setIsProductsOpen(false)}
-                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium flex items-center"
-              >
-                Products
-                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isProductsOpen && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-64 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-lg py-2 z-50"
-                  onMouseEnter={() => setIsProductsOpen(true)}
-                  onMouseLeave={() => setIsProductsOpen(false)}
-                >
-                  <Link to="/products/qr-payments" className="block px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900">
-                    <div className="font-medium">QR Payments</div>
-                    <div className="text-sm text-gray-500">Contactless payment solutions</div>
-                  </Link>
-                  <Link to="/products/gift-cards" className="block px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900">
-                    <div className="font-medium">Gift Cards</div>
-                    <div className="text-sm text-gray-500">Digital gift card management</div>
-                  </Link>
-                  <Link to="/products/loyalty" className="block px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900">
-                    <div className="font-medium">Loyalty Programs</div>
-                    <div className="text-sm text-gray-500">Customer retention solutions</div>
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div className="relative">
-              <button
-                onMouseEnter={() => setIsSolutionsOpen(true)}
-                onMouseLeave={() => setIsSolutionsOpen(false)}
+                onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium flex items-center"
               >
                 Solutions
-                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`ml-1 h-4 w-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {isSolutionsOpen && (
                 <div
                   className="absolute top-full left-0 mt-2 w-64 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-lg py-2 z-50"
-                  onMouseEnter={() => setIsSolutionsOpen(true)}
-                  onMouseLeave={() => setIsSolutionsOpen(false)}
                 >
                   <Link to="/solutions/business" className="block px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900">
                     <div className="font-medium">For Businesses</div>
@@ -104,12 +82,12 @@ const Header = () => {
             >
               Sign In
             </a>
-            <Link
-              to="/contact"
+            <a
+              href={process.env.NODE_ENV === 'production' ? 'https://business.ottoafrica.com' : 'http://localhost:3001'}
               className="bg-otto-blue text-white px-6 py-2 rounded-full hover:bg-black transition-colors duration-200 font-medium"
             >
               Get Started
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -133,21 +111,6 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4">
             <div className="space-y-4">
-              <div>
-                <div className="font-medium text-gray-900 mb-2">Products</div>
-                <div className="pl-4 space-y-2">
-                  <Link to="/products/qr-payments" className="block text-gray-600 hover:text-gray-900" onClick={() => setIsMobileMenuOpen(false)}>
-                    QR Payments
-                  </Link>
-                  <Link to="/products/gift-cards" className="block text-gray-600 hover:text-gray-900" onClick={() => setIsMobileMenuOpen(false)}>
-                    Gift Cards
-                  </Link>
-                  <Link to="/products/loyalty" className="block text-gray-600 hover:text-gray-900" onClick={() => setIsMobileMenuOpen(false)}>
-                    Loyalty Programs
-                  </Link>
-                </div>
-              </div>
-
               <div>
                 <div className="font-medium text-gray-900 mb-2">Solutions</div>
                 <div className="pl-4 space-y-2">
@@ -178,13 +141,13 @@ const Header = () => {
                   >
                     Sign In
                   </a>
-                  <Link
-                    to="/contact"
+                  <a
+                    href={process.env.NODE_ENV === 'production' ? 'https://business.ottoafrica.com' : 'http://localhost:3001'}
                     className="block bg-otto-blue text-white px-4 py-2 rounded-full text-center hover:bg-black transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Get Started
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
