@@ -48,7 +48,7 @@ const Features = () => {
           <div className="scroll-animate">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900 mb-6 leading-tight">
               How would you like to grow?
-            </h2>
+          </h2>
           </div>
           <div className="flex flex-col items-end lg:items-start lg:pl-8">
             <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed max-w-lg scroll-animate delay-100">
@@ -117,14 +117,14 @@ const Features = () => {
                 <div className="flex items-start gap-4">
                   {/* Description Text */}
                   <p className="text-sm text-gray-600 leading-relaxed flex-1">
-                    {feature.description}
-                  </p>
+                {feature.description}
+              </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </div>
+        </div>
 
       {/* Modal */}
       {selectedFeature && (
@@ -191,7 +191,7 @@ const Features = () => {
                   strokeWidth={2}
                   d="M13 7l5 5m0 0l-5 5m5-5H6"
                 />
-              </svg>
+            </svg>
             </a>
           </div>
         </div>
