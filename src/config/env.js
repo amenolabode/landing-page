@@ -2,7 +2,7 @@
  * Environment detection from the current URL/domain.
  * No .env required: local, test, staging, or production is inferred from where the app is served.
  *
- * - local:     localhost / 127.0.0.1  → API at http://localhost:8000/api
+ * - local:     localhost / 127.0.0.1  → API at http://localhost:3000/api
  * - test:      hostname contains "test"  → API at https://api-test.ottoafrica.com/api
  * - staging:   hostname contains "staging" → API at https://api-staging.ottoafrica.com/api
  * - production: else (e.g. ottoafrica.com) → API at https://api.ottoafrica.com/api
@@ -16,7 +16,7 @@ const ENV = {
 };
 
 const API_BASE_URLS = {
-  [ENV.LOCAL]: "http://localhost:8000/api",
+  [ENV.LOCAL]: "http://localhost:3000/api",
   [ENV.TEST]: "https://api-test.ottoafrica.com/api",
   [ENV.STAGING]: "https://api-staging.ottoafrica.com/api",
   [ENV.PRODUCTION]: "https://api.ottoafrica.com/api",

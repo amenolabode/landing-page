@@ -56,6 +56,7 @@ import InvestmentGiftReceive from "./pages/InvestmentGiftReceive";
 import PayPage from "./pages/PayPage";
 import Pricing from "./pages/Pricing";
 import Checkout from "./pages/Checkout";
+import DemoBank from "./pages/DemoBank";
 
 // Import routes
 import { paths } from "./utils/routes";
@@ -86,7 +87,10 @@ function App() {
         <Route path={paths.CONTACT} element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/investment-terms-and-conditions" element={<InvestmentTermsAndConditions />} />
+        <Route
+          path="/investment-terms-and-conditions"
+          element={<InvestmentTermsAndConditions />}
+        />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/security" element={<Security />} />
         <Route path="/account-deletion" element={<AccountDeletion />} />
@@ -101,7 +105,10 @@ function App() {
         <Route path={paths.DOCS_GETTING_STARTED} element={<GettingStarted />} />
         <Route path={paths.DOCS_AUTHENTICATION} element={<Authentication />} />
         <Route path={paths.DOCS_GIFT_CARDS} element={<DocsGiftCards />} />
-        <Route path={paths.DOCS_INVESTMENT_CERTIFICATES} element={<InvestmentCertificates />} />
+        <Route
+          path={paths.DOCS_INVESTMENT_CERTIFICATES}
+          element={<InvestmentCertificates />}
+        />
         <Route path={paths.DOCS_TRANSACTIONS} element={<Transactions />} />
         <Route path={paths.DOCS_LOYALTY} element={<DocsLoyalty />} />
         <Route path={paths.DOCS_QR_CODES} element={<QRCodes />} />
@@ -114,7 +121,10 @@ function App() {
         <Route path={paths.DOCS_ANDROID_SDK} element={<AndroidSdkDocs />} />
         <Route path={paths.DOCS_IOS_SDK} element={<IosSdkDocs />} />
         <Route path={paths.DOCS_FLUTTER_SDK} element={<FlutterSdkDocs />} />
-        <Route path={paths.DOCS_JAVASCRIPT_SDK} element={<JavascriptSdkDocs />} />
+        <Route
+          path={paths.DOCS_JAVASCRIPT_SDK}
+          element={<JavascriptSdkDocs />}
+        />
         <Route path={paths.DOCS_TESTING} element={<Testing />} />
         <Route path={paths.DOCS_SUPPORT} element={<Support />} />
 
@@ -126,7 +136,10 @@ function App() {
         {/* Gift Card Receive – link from email/SMS: ?token= */}
         <Route path="/gift-cards/receive" element={<GiftCardReceive />} />
         {/* Investment Gift Receive – link from email/SMS: ?token= */}
-        <Route path="/investment-gift/receive" element={<InvestmentGiftReceive />} />
+        <Route
+          path="/investment-gift/receive"
+          element={<InvestmentGiftReceive />}
+        />
 
         {/* Pay – scan merchant QR: /pay/:qrId?amount= (deeplink to app or download) */}
         <Route path="/pay/:qrId" element={<PayPage />} />
@@ -136,6 +149,9 @@ function App() {
 
         {/* Checkout */}
         <Route path="/checkout" element={<Checkout />} />
+
+        {/* Demo bank — simulate NUBAN / MoMo transfers (non-production) */}
+        <Route path={paths.DEMO_BANK} element={<DemoBank />} />
 
         {/* 404 Fallback */}
         <Route path="*" element={<Page404 />} />

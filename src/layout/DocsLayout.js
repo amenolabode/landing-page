@@ -17,7 +17,10 @@ const DEFAULT_SIDEBAR_ITEMS = [
     title: "Core concepts",
     items: [
       { path: "/docs/gift-cards", label: "Gift Cards" },
-      { path: "/docs/investment-certificates", label: "Investment Certificates" },
+      {
+        path: "/docs/investment-certificates",
+        label: "Investment Certificates",
+      },
       { path: "/docs/transactions", label: "Transactions" },
       { path: "/docs/loyalty", label: "Loyalty Programs" },
       { path: "/docs/qr-codes", label: "QR Codes" },
@@ -36,6 +39,7 @@ const DEFAULT_SIDEBAR_ITEMS = [
   {
     title: "Tools",
     items: [
+      { path: "/demo-bank", label: "Demo Bank" },
       { path: "/docs/sdks", label: "SDKs & Libraries" },
       { path: "/docs/support", label: "Support" },
     ],
@@ -126,27 +130,27 @@ const DocsLayout = ({
         <aside className={`docs-sidebar ${isSidebarOpen ? "open" : ""}`}>
           <nav className="docs-sidebar-nav">
             {DEFAULT_SIDEBAR_ITEMS.map((section, index) => (
-                <div key={index} className="docs-nav-section">
-                  <div className="docs-nav-section-header">
-                    <span className="docs-nav-section-title">
-                      {section.title}
-                    </span>
-                  </div>
-                  <div className="docs-nav-section-items">
-                    {section.items.map((item, itemIndex) => (
-                      <Link
-                        key={itemIndex}
-                        to={item.path}
-                        className={`docs-nav-item ${
-                          currentPage === item.path ? "active" : ""
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+              <div key={index} className="docs-nav-section">
+                <div className="docs-nav-section-header">
+                  <span className="docs-nav-section-title">
+                    {section.title}
+                  </span>
                 </div>
-              ))}
+                <div className="docs-nav-section-items">
+                  {section.items.map((item, itemIndex) => (
+                    <Link
+                      key={itemIndex}
+                      to={item.path}
+                      className={`docs-nav-item ${
+                        currentPage === item.path ? "active" : ""
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </nav>
         </aside>
 

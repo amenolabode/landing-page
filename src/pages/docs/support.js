@@ -4,7 +4,6 @@ import SEO from "../../components/SEO";
 import "./docs.css";
 
 const Support = () => {
-
   const onThisPageItems = [
     { href: "#overview", label: "Overview" },
     { href: "#channels", label: "Support Channels" },
@@ -24,7 +23,6 @@ const Support = () => {
       />
       <DocsLayout
         currentPage="/docs/support"
-        
         onThisPageItems={onThisPageItems}
         nutshell="Get help from our support team through email and GitHub issues."
       >
@@ -127,8 +125,10 @@ const Support = () => {
                 Webhook Signature Verification
               </h4>
               <p className="text-gray-600 text-sm mb-4">
-                Webhook payloads include a signature for verification. Make sure
-                you're verifying signatures to ensure request authenticity.
+                Webhook payloads include an <code>X-Otto-Signature</code>{" "}
+                header. Verify against the raw body. <code>collect.paid</code>{" "}
+                is recorded for every settlement — configure a URL in the
+                merchant app to receive POSTs.
               </p>
               <div className="bg-gray-50 p-4 rounded text-sm">
                 <strong>Help:</strong> Check our{" "}
