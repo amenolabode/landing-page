@@ -706,3 +706,119 @@
     letter-spacing: 0.08em;
   }
 }
+
+.pay-web-form {
+  text-align: left;
+}
+
+.pay-web-form h1 {
+  text-align: center;
+}
+
+.pay-momo-form {
+  margin-top: 20px;
+}
+
+.pay-field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1b3359;
+}
+
+.pay-field-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.pay-network-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.pay-network-chip {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pay-network-chip.selected {
+  border-color: #1b3359;
+  background: #f0f4fa;
+  font-weight: 600;
+}
+
+.pay-submit-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.pay-error {
+  color: #b42318;
+}
+
+.pay-waiting,
+.pay-result {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.pay-secondary-cta {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.pay-confirm {
+  margin-top: 20px;
+}
+
+.pay-confirm-rows {
+  margin: 20px 0 16px;
+}
+
+.pay-confirm-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.pay-confirm-row:last-child {
+  border-bottom: none;
+}
+
+.pay-confirm-row span:first-child {
+  color: #64748b;
+}
+
+.pay-confirm-row span:last-child {
+  font-weight: 600;
+  color: #121212;
+  text-align: right;
+}
+
+.pay-confirm-hint {
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.pay-confirm-back {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}

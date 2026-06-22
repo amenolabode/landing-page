@@ -26,15 +26,20 @@ export function getStoreUrlForOS(os) {
 
 /**
  * Customer app pay deep link — must match Android/iOS intent filters
- * (`ottoafrica://pay/{qrId}?amount=`).
+ * (`ottoafrica://pay/{qrId}?amount=&c=`).
  */
-export function buildPayDeepLink(qrId, amount) {
+export function buildPayDeepLink(qrId, amount, collectId) {
   const id = encodeURIComponent(String(qrId || "").trim());
   const base = `ottoafrica://pay/${id}`;
+  const params = new URLSearchParams();
   if (amount != null && String(amount).trim() !== "") {
-    return `${base}?amount=${encodeURIComponent(String(amount).trim())}`;
+    params.set("amount", String(amount).trim());
   }
-  return base;
+  if (collectId != null && String(collectId).trim() !== "") {
+    params.set("c", String(collectId).trim());
+  }
+  const qs = params.toString();
+  return qs ? `${base}?${qs}` : base;
 }
 
 /**
