@@ -44,12 +44,6 @@ const blocked = [
     blockers:
       "README-only scaffold; missing pyproject.toml or setup.py, package code, tests, build config, PyPI metadata.",
   },
-  {
-    package: "sdks/packages/events-sdk-php",
-    status: "Not publishable",
-    blockers:
-      "README-only scaffold; missing composer.json, PHP source/autoload, tests, Packagist metadata.",
-  },
 ];
 
 const SDKs = () => {
