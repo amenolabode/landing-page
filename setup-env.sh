@@ -8,8 +8,8 @@ echo "Setting up Landing Page environment files..."
 cat > .env.local << 'EOF'
 # Otto Landing Page - Local
 REACT_APP_ENV=local
-REACT_APP_API_URL=http://localhost:8000/api
-REACT_APP_MERCHANT_PORTAL_URL=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3000/api
+REACT_APP_MERCHANT_PORTAL_URL=http://localhost:3002
 EOF
 echo "  - .env.local"
 

@@ -1,10 +1,12 @@
 /**
  * API base URL without trailing /api (public collect routes live at /api/public/...).
  */
+import { getApiBaseUrl } from "../config/env";
+
 export function getApiRoot() {
   const configured = process.env.REACT_APP_API_URL || "";
-  if (!configured) return "http://localhost:8000";
-  return configured.replace(/\/api\/?$/, "");
+  if (configured) return configured.replace(/\/api\/?$/, "");
+  return getApiBaseUrl().replace(/\/api\/?$/, "");
 }
 
 export function newIdempotencyKey() {
@@ -51,7 +53,12 @@ export async function fetchCollectSummary(collectId) {
   return json.data ?? json;
 }
 
-export async function initiateDirectDebit(collectId, phone, network, idempotencyKey) {
+export async function initiateDirectDebit(
+  collectId,
+  phone,
+  network,
+  idempotencyKey,
+) {
   const res = await fetch(
     `${getApiRoot()}/api/public/collect/${encodeURIComponent(collectId)}/direct-debit/initiate`,
     {

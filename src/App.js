@@ -152,6 +152,7 @@ function App() {
 
         {/* Demo bank — simulate NUBAN / MoMo transfers (non-production) */}
         <Route path={paths.DEMO_BANK} element={<DemoBank />} />
+        <Route path="/test-bank" element={<DemoBank />} />
 
         {/* 404 Fallback */}
         <Route path="*" element={<Page404 />} />

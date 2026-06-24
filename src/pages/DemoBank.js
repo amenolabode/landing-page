@@ -32,6 +32,13 @@ const DemoBank = () => {
   const [transferResult, setTransferResult] = useState(null);
   const [isLookingUp, setIsLookingUp] = useState(false);
   const [isTransferring, setIsTransferring] = useState(false);
+  const [debitRequestId, setDebitRequestId] = useState(
+    searchParams.get("debitRequestId") || "",
+  );
+  const [approvalPin, setApprovalPin] = useState("1234");
+  const [isApprovingDebit, setIsApprovingDebit] = useState(false);
+  const [approvalError, setApprovalError] = useState("");
+  const [approvalResult, setApprovalResult] = useState(null);
 
   const momoMeta = useMemo(
     () => MOMO_NETWORKS.find((n) => n.id === momoNetwork) ?? MOMO_NETWORKS[0],
@@ -133,6 +140,46 @@ const DemoBank = () => {
       );
     } finally {
       setIsTransferring(false);
+    }
+  };
+
+  const handleDirectDebitApprove = async (event) => {
+    event.preventDefault();
+    setApprovalError("");
+    setApprovalResult(null);
+
+    if (!debitRequestId.trim()) {
+      setApprovalError("Enter a debit request ID.");
+      return;
+    }
+
+    setIsApprovingDebit(true);
+    try {
+      const response = await fetch(
+        getApiUrl("public/demo-bank/direct-debit/approve"),
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            debit_request_id: debitRequestId.trim(),
+            pin: approvalPin.trim(),
+          }),
+        },
+      );
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          payload?.message || "PIN push approval failed. Please try again.",
+        );
+      }
+      setApprovalResult(payload.data);
+      setDebitRequestId("");
+    } catch (error) {
+      setApprovalError(
+        error.message || "PIN push approval failed. Please try again.",
+      );
+    } finally {
+      setIsApprovingDebit(false);
     }
   };
 
@@ -293,6 +340,60 @@ const DemoBank = () => {
                   : "Payment closed"}
             </button>
           </form>
+
+          <section className="demo-bank-beneficiary">
+            <p className="demo-bank-section-label">USSD / PIN push simulator</p>
+            <h2>Approve direct debit (local only)</h2>
+            <p className="demo-bank-meta">
+              Use the debit request ID from <code>/pay/:qrId?c=...</code> and
+              approve with PIN <code>1234</code>.
+            </p>
+            <form
+              className="demo-bank-form"
+              onSubmit={handleDirectDebitApprove}
+            >
+              <label>
+                Debit request ID
+                <input
+                  type="text"
+                  placeholder="ddr_..."
+                  value={debitRequestId}
+                  onChange={(event) => setDebitRequestId(event.target.value)}
+                  required
+                />
+              </label>
+
+              <label>
+                PIN
+                <input
+                  type="password"
+                  inputMode="numeric"
+                  placeholder="1234"
+                  value={approvalPin}
+                  onChange={(event) => setApprovalPin(event.target.value)}
+                  required
+                />
+              </label>
+
+              {approvalError && (
+                <p className="demo-bank-error">{approvalError}</p>
+              )}
+              {approvalResult && (
+                <div className="demo-bank-success">
+                  Direct debit {approvalResult.debitRequestId} is{" "}
+                  {approvalResult.status}.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="demo-bank-submit"
+                disabled={isApprovingDebit}
+              >
+                {isApprovingDebit ? "Approving" : "Approve PIN push"}
+              </button>
+            </form>
+          </section>
 
           <p className="demo-bank-footnote">
             Available in local, test, and staging.{" "}

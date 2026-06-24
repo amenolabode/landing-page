@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import OttoIcon from "../components/OttoIcon";
@@ -79,13 +85,17 @@ const PayPage = () => {
         if (!cancelled) {
           setSummary(data);
           if (data.status && data.status !== "awaiting_payment") {
-            setSummaryError("This payment has already been completed or closed.");
+            setSummaryError(
+              "This payment has already been completed or closed.",
+            );
           }
         }
       } catch (err) {
         if (!cancelled) {
           setSummaryError(
-            err instanceof Error ? err.message : "Could not load payment details",
+            err instanceof Error
+              ? err.message
+              : "Could not load payment details",
           );
         }
       }
@@ -153,8 +163,7 @@ const PayPage = () => {
             stopPolling();
             setPayPhase("failed");
             setPayError(
-              status.reason ||
-                "Payment was not approved. Please try again.",
+              status.reason || "Payment was not approved. Please try again.",
             );
           } else if (status.status === "expired") {
             stopPolling();
@@ -370,6 +379,22 @@ const PayPage = () => {
                 {phoneMasked && (
                   <p className="gift-card-sender">{phoneMasked}</p>
                 )}
+                {debitRequestId && (
+                  <p className="gift-card-sender">
+                    Request ID: <code>{debitRequestId}</code>
+                  </p>
+                )}
+                {debitRequestId && (
+                  <p className="subhead">
+                    Local QA: open{" "}
+                    <a
+                      href={`/test-bank?debitRequestId=${encodeURIComponent(debitRequestId)}`}
+                    >
+                      /test-bank
+                    </a>{" "}
+                    and approve with PIN 1234.
+                  </p>
+                )}
                 <button
                   type="button"
                   className="gift-card-try-app-btn"
@@ -384,9 +409,7 @@ const PayPage = () => {
               <div className="pay-result success">
                 <div className="gift-card-celebrate">✓</div>
                 <h2>Payment complete</h2>
-                <p className="subhead">
-                  You paid {merchantName} successfully.
-                </p>
+                <p className="subhead">You paid {merchantName} successfully.</p>
               </div>
             )}
 
