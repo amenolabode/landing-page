@@ -4,6 +4,10 @@ import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
+/**
+ * Rate Limits.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const RateLimits = () => {
 
   const onThisPageItems = [

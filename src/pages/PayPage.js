@@ -35,6 +35,10 @@ import "./GiftCardShare.css";
 const POLL_MS = 4000;
 const POLL_MAX = 30;
 
+/**
+ * Pay Page.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const PayPage = () => {
   const { qrId } = useParams();
   const [searchParams] = useSearchParams();

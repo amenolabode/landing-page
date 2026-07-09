@@ -62,6 +62,10 @@ import DemoBank from "./pages/DemoBank";
 import { paths } from "./utils/routes";
 import ReferralQueryHandler from "./components/ReferralQueryHandler";
 
+/**
+ * App.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 function App() {
   return (
     <Router>

@@ -5,6 +5,10 @@ import MultiLanguageCodeBlock from '../../components/MultiLanguageCodeBlock';
 import { getMerchantPortalUrl } from '../../utils/getMerchantPortalUrl';
 import './docs.css';
 
+/**
+ * Getting Started.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const GettingStarted = () => {
 
 

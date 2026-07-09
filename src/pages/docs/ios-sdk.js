@@ -4,6 +4,10 @@ import SEO from "../../components/SEO";
 import CodeBlock from "../../components/CodeBlock";
 import "./docs.css";
 
+/**
+ * Ios Sdk Docs.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const IosSdkDocs = () => {
   const onThisPageItems = [
     { href: "#introduction", label: "Introduction" },

@@ -4,6 +4,10 @@ import SEO from "../../components/SEO";
 import CodeBlock from "../../components/CodeBlock";
 import "./docs.css";
 
+/**
+ * Testing.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Testing = () => {
   const onThisPageItems = [
     { href: "#overview", label: "Overview" },
@@ -295,7 +299,10 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
 
           <p>
             For Collect &amp; Pay invoices, Otto provisions a wallet (virtual
-            account) customers pay into. In local, test, and staging, use{" "}
+            account) customers pay into. On your{" "}
+            <strong>local machine only</strong> (with{" "}
+            <code>DEMO_BANK_ENABLED=true</code> and <code>APP_ENV=local</code>
+            ), use{" "}
             <a href="/demo-bank" className="text-[#00B4D8] hover:underline">
               Otto Demo Bank
             </a>{" "}
@@ -312,9 +319,9 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
           </p>
 
           <div className="docs-alert info">
-            Demo Bank is disabled in production. It calls the same Otto Wallet
-            inbound settlement path used by real bank/MoMo integrations (
-            <code>otto.wallet.inbound</code>).
+            Demo Bank is disabled on staging and production. It calls the same
+            Otto Wallet inbound settlement path used by real bank/MoMo
+            integrations (<code>otto.wallet.inbound</code>).
           </div>
 
           <div className="bg-blue-50 p-6 rounded-lg mb-6">

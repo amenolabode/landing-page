@@ -4,6 +4,10 @@ import SEO from "../../components/SEO";
 import CodeBlock from "../../components/CodeBlock";
 import "./docs.css";
 
+/**
+ * Webhooks.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Webhooks = () => {
   const onThisPageItems = [
     { href: "#overview", label: "Overview" },
@@ -197,6 +201,10 @@ User-Agent: Otto-Webhooks/1.0`}
             showLineNumbers={true}
             code={`const crypto = require('crypto');
 
+/**
+ * Verify Webhook Signature.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 function verifyWebhookSignature(rawBody, signatureHeader, secret) {
   const expected = crypto
     .createHmac('sha256', secret)

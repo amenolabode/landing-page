@@ -12,6 +12,10 @@ export function getDeviceOS() {
   return "desktop";
 }
 
+/**
+ * Is Mobile Device.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function isMobileDevice() {
   const os = getDeviceOS();
   return os === "ios" || os === "android";
@@ -109,6 +113,7 @@ export function attemptOpenCustomerApp({
 
 /**
  * After a failed app open on mobile, send the user to the correct store listing.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
  */
 export function redirectToStoreForDevice() {
   const url = getStoreUrlForOS(getDeviceOS());

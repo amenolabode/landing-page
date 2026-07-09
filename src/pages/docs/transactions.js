@@ -5,6 +5,10 @@ import CodeBlock from '../../components/CodeBlock';
 import MultiLanguageCodeBlock from '../../components/MultiLanguageCodeBlock';
 import './docs.css';
 
+/**
+ * Transactions.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Transactions = () => {
 
 

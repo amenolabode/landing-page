@@ -11,6 +11,10 @@ const MOMO_NETWORKS = [
   { id: "airteltigo", label: "AirtelTigo Money", placeholder: "23327XXXXXXXX" },
 ];
 
+/**
+ * Demo Bank.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const DemoBank = () => {
   const [searchParams] = useSearchParams();
   const [rail, setRail] = useState(

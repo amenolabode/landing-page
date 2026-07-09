@@ -46,6 +46,10 @@ const DEFAULT_SIDEBAR_ITEMS = [
   },
 ];
 
+/**
+ * Docs Layout.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 const DocsLayout = ({
   children,
   currentPage,

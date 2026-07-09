@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OttoIcon from "../components/OttoIcon";
 
+/**
+ * Header.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 const Header = () => {
 	const navigate = useNavigate();
 	const aboutRef = useRef(null);

@@ -6,6 +6,10 @@ import SEO from "../components/SEO";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { getMerchantPortalUrl } from "../utils/getMerchantPortalUrl";
 
+/**
+ * Checkout.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Checkout = () => {
   const [searchParams] = useSearchParams();
   const heroRef = useScrollAnimation({ threshold: 0.1 });

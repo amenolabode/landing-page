@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { getMerchantPortalUrl } from '../utils/getMerchantPortalUrl';
 import OttoIcon from './OttoIcon';
 
+/**
+ * Header.
+ * Reusable components isolate presentation from data fetching so design updates do not touch API code.
+ */
 const Header = () => {
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

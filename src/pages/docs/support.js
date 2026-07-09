@@ -3,6 +3,10 @@ import DocsLayout from "../../layout/DocsLayout";
 import SEO from "../../components/SEO";
 import "./docs.css";
 
+/**
+ * Support.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Support = () => {
   const onThisPageItems = [
     { href: "#overview", label: "Overview" },

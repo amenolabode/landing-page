@@ -3,6 +3,10 @@ import Layout from "../layout/layout";
 import QRCodeChanger from "../qrcode-changer";
 import OttoIcon from "../components/OttoIcon";
 
+/**
+ * Landing Page.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const LandingPage = () => {
   const valuelist = [
     {

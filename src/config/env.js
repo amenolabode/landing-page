@@ -39,6 +39,7 @@ export function getEnvironment() {
 
 /**
  * Get the API base URL for the current environment (no trailing slash).
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
  */
 export function getApiBaseUrl() {
   const env = getEnvironment();

@@ -9,6 +9,10 @@ import { getApiUrl } from "../config/env";
 const IOS_APP_URL = "https://apps.apple.com/app/otto/id123456789";
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.otto.customer";
 
+/**
+ * Get Device O S.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const getDeviceOS = () => {
   const ua = navigator.userAgent;
   if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
@@ -16,6 +20,10 @@ const getDeviceOS = () => {
   return "desktop";
 };
 
+/**
+ * Gift Card Share.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const GiftCardShare = () => {
   const { id } = useParams();
   const [isChecking, setIsChecking] = useState(true);

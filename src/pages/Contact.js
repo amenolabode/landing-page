@@ -5,6 +5,10 @@ import SEO from '../components/SEO';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { getApiUrl } from '../config/env';
 
+/**
+ * Contact.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Contact = () => {
   const heroRef = useScrollAnimation({ threshold: 0.1 });
   const formRef = useScrollAnimation({ threshold: 0.1 });

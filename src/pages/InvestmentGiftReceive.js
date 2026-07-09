@@ -4,6 +4,10 @@ import SEO from "../components/SEO";
 import { getApiUrl } from "../config/env";
 import "./GiftCardShare.css";
 
+/**
+ * Investment Gift Receive.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const InvestmentGiftReceive = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");

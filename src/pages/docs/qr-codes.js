@@ -4,6 +4,10 @@ import SEO from '../../components/SEO';
 import CodeBlock from '../../components/CodeBlock';
 import './docs.css';
 
+/**
+ * Q R Codes.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const QRCodes = () => {
   const [activeTab, setActiveTab] = useState('curl');
 

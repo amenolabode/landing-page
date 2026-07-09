@@ -7,6 +7,10 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { getMerchantPortalUrl } from "../utils/getMerchantPortalUrl";
 import { getApiUrl } from "../config/env";
 
+/**
+ * Pricing.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const Pricing = () => {
   const [searchParams] = useSearchParams();
   const heroRef = useScrollAnimation({ threshold: 0.1 });

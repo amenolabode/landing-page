@@ -9,6 +9,10 @@ export const MOMO_NETWORKS = [
 export const POLL_INTERVAL_MS = 4000;
 export const POLL_TIMEOUT_MS = 2 * 60 * 1000;
 
+/**
+ * Normalize Ghana Phone.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function normalizeGhanaPhone(raw) {
   let digits = String(raw || "").replace(/\D/g, "");
   if (digits.startsWith("233")) {
@@ -20,10 +24,18 @@ export function normalizeGhanaPhone(raw) {
   return digits;
 }
 
+/**
+ * Is Valid Ghana Phone.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function isValidGhanaPhone(raw) {
   return /^0[235][0-9]{8}$/.test(normalizeGhanaPhone(raw));
 }
 
+/**
+ * Detect Network From Phone.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function detectNetworkFromPhone(raw) {
   const phone = normalizeGhanaPhone(raw);
   const prefix = phone.slice(0, 3);
@@ -39,12 +51,20 @@ export function detectNetworkFromPhone(raw) {
   return "MTN";
 }
 
+/**
+ * Mask Phone.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function maskPhone(raw) {
   const phone = normalizeGhanaPhone(raw);
   const last4 = phone.slice(-4).padStart(4, "0");
   return `••• ••• ${last4}`;
 }
 
+/**
+ * Format Amount Minor.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function formatAmountMinor(amountMinor, currency = "GHS") {
   const major = Number(amountMinor) / 100;
   if (!Number.isFinite(major)) return null;
@@ -54,6 +74,10 @@ export function formatAmountMinor(amountMinor, currency = "GHS") {
   })}`;
 }
 
+/**
+ * Parse Api Response.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 async function parseApiResponse(response) {
   const payload = await response.json().catch(() => ({}));
   if (!response.ok || payload?.error === true) {
@@ -64,6 +88,10 @@ async function parseApiResponse(response) {
   return payload?.data ?? payload;
 }
 
+/**
+ * Fetch Collect Summary.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function fetchCollectSummary(collectId) {
   const response = await fetch(
     getApiUrl(`public/collect/${encodeURIComponent(collectId)}/summary`),
@@ -71,6 +99,10 @@ export async function fetchCollectSummary(collectId) {
   return parseApiResponse(response);
 }
 
+/**
+ * Initiate Direct Debit.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function initiateDirectDebit(collectId, { phone, network }) {
   const response = await fetch(
     getApiUrl(
@@ -88,6 +120,10 @@ export async function initiateDirectDebit(collectId, { phone, network }) {
   return parseApiResponse(response);
 }
 
+/**
+ * Fetch Direct Debit Status.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function fetchDirectDebitStatus(collectId, debitRequestId) {
   const query = new URLSearchParams({ debitRequestId });
   const response = await fetch(
@@ -98,6 +134,10 @@ export async function fetchDirectDebitStatus(collectId, debitRequestId) {
   return parseApiResponse(response);
 }
 
+/**
+ * Cancel Direct Debit.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function cancelDirectDebit(collectId, debitRequestId) {
   const response = await fetch(
     getApiUrl(

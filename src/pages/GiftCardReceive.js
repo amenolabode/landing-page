@@ -17,6 +17,10 @@ function getInitials(name) {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
+/**
+ * Gift Card Receive.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const GiftCardReceive = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");

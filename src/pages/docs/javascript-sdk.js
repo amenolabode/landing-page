@@ -5,6 +5,10 @@ import CodeBlock from "../../components/CodeBlock";
 import { Link } from "react-router-dom";
 import "./docs.css";
 
+/**
+ * Javascript Sdk Docs.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const JavascriptSdkDocs = () => {
   const onThisPageItems = [
     { href: "#introduction", label: "Introduction" },

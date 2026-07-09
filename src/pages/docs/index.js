@@ -4,6 +4,10 @@ import DocsLayout from "../../layout/DocsLayout";
 import SEO from "../../components/SEO";
 import "./docs.css";
 
+/**
+ * Docs Index.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const DocsIndex = () => {
   return (
     <>

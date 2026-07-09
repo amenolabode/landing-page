@@ -46,6 +46,10 @@ const blocked = [
   },
 ];
 
+/**
+ * S D Ks.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const SDKs = () => {
   return (
     <>

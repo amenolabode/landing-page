@@ -3,12 +3,20 @@
  */
 import { getApiBaseUrl } from "../config/env";
 
+/**
+ * Get Api Root.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function getApiRoot() {
   const configured = process.env.REACT_APP_API_URL || "";
   if (configured) return configured.replace(/\/api\/?$/, "");
   return getApiBaseUrl().replace(/\/api\/?$/, "");
 }
 
+/**
+ * New Idempotency Key.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function newIdempotencyKey() {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
     return `web_ddr_${crypto.randomUUID()}`;
@@ -22,6 +30,10 @@ const GH_NETWORKS = [
   { code: "VOD", label: "Telecel" },
 ];
 
+/**
+ * Detect Ghana Network.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function detectGhanaNetwork(phone) {
   let digits = String(phone || "").replace(/\D/g, "");
   if (digits.startsWith("233")) digits = `0${digits.slice(3)}`;
@@ -36,6 +48,10 @@ export function detectGhanaNetwork(phone) {
   return "";
 }
 
+/**
+ * Mask Phone.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export function maskPhone(phone) {
   const digits = String(phone || "").replace(/\D/g, "");
   if (digits.length < 4) return phone;
@@ -44,6 +60,10 @@ export function maskPhone(phone) {
 
 export { GH_NETWORKS };
 
+/**
+ * Fetch Collect Summary.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function fetchCollectSummary(collectId) {
   const res = await fetch(
     `${getApiRoot()}/api/public/collect/${encodeURIComponent(collectId)}/summary`,
@@ -53,6 +73,10 @@ export async function fetchCollectSummary(collectId) {
   return json.data ?? json;
 }
 
+/**
+ * Initiate Direct Debit.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function initiateDirectDebit(
   collectId,
   phone,
@@ -77,6 +101,10 @@ export async function initiateDirectDebit(
   return json.data ?? json;
 }
 
+/**
+ * Fetch Direct Debit Status.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function fetchDirectDebitStatus(collectId, debitRequestId) {
   const url = `${getApiRoot()}/api/public/collect/${encodeURIComponent(collectId)}/direct-debit/status?debitRequestId=${encodeURIComponent(debitRequestId)}`;
   const res = await fetch(url);
@@ -87,6 +115,10 @@ export async function fetchDirectDebitStatus(collectId, debitRequestId) {
   return json.data ?? json;
 }
 
+/**
+ * Cancel Direct Debit.
+ * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
+ */
 export async function cancelDirectDebit(collectId, debitRequestId) {
   await fetch(
     `${getApiRoot()}/api/public/collect/${encodeURIComponent(collectId)}/direct-debit/cancel`,

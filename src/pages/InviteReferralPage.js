@@ -13,6 +13,10 @@ const ANDROID_APP_URL = CUSTOMER_ANDROID_APP_URL;
 const STORAGE_REF = "otto_referral_code";
 const STORAGE_CHANNEL = "otto_referral_channel";
 
+/**
+ * Get Device O S.
+ * Route-level components compose shared UI primitives so merchant workflows stay consistent across the portal.
+ */
 const getDeviceOS = () => {
   if (typeof navigator === "undefined") return "desktop";
   const ua = navigator.userAgent;
