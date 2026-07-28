@@ -331,7 +331,7 @@ function verifyWebhookSignature(rawBody, signatureHeader, secret) {
               <a href="/demo-bank" className="text-[#00B4D8] hover:underline">
                 Demo Bank
               </a>{" "}
-              and enter the invoice NUBAN (<code>999…</code>) or MoMo number
+              and enter the invoice NUBAN (<code>777…</code>) or MoMo number
             </li>
             <li>
               Send the exact invoice amount — mismatches return <code>422</code>

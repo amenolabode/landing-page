@@ -374,7 +374,7 @@ const DemoBank = () => {
                     placeholder={
                       rail === "momo"
                         ? momoMeta.placeholder
-                        : "999XXXXXXXX (invoice) or 888XXXXXXXX (wallet)"
+                        : "777XXXXXXX (invoice) or 888/999XXXXXXX (wallet)"
                     }
                     value={accountNumber}
                     onChange={(event) => setAccountNumber(event.target.value)}
@@ -440,10 +440,13 @@ const DemoBank = () => {
             Available in local, test, and staging.{" "}
             <a href="/docs/testing#demo-bank">Read the testing guide</a> or{" "}
             <a href="/docs/webhooks">webhook docs</a>. Invoice virtual
-            accounts start with <code>999</code>; merchant wallet top-ups use{" "}
-            <code>888</code>; customer wallet top-ups use <code>777</code>.
+            accounts start with <code>777</code> and only ever receive payment
+            for their own invoice; merchant wallet top-ups use{" "}
+            <code>888</code>; customer wallet top-ups use <code>999</code>.
             MoMo test numbers use Ghana prefixes: MTN <code>23324…</code>,
-            Vodafone <code>23320…</code>, AirtelTigo <code>23327…</code>.
+            Vodafone <code>23320…</code>, AirtelTigo <code>23327…</code>,
+            followed by the entity digit (<code>7</code> invoice,{" "}
+            <code>8</code> merchant wallet, <code>9</code> customer wallet).
           </p>
         </main>
       </div>

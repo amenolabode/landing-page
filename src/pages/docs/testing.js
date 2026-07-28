@@ -327,7 +327,7 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
                 provisioned.
               </li>
               <li>
-                Copy the Otto Wallet NUBAN (<code>999…</code>) or Ghana MoMo
+                Copy the Otto Wallet NUBAN (<code>777…</code>) or Ghana MoMo
                 number from the invoice detail screen.
               </li>
               <li>
@@ -384,23 +384,23 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
           <CodeBlock
             language="bash"
             code={`# Lookup an invoice wallet (Otto-issued NUBAN)
-curl "http://localhost:3000/api/public/demo-bank/lookup?account=9990000027&rail=nuban"
+curl "http://localhost:3000/api/public/demo-bank/lookup?account=7770000027&rail=nuban"
 
 # Simulate bank transfer — amount_minor must match the invoice exactly (1200 = GHS 12.00)
 curl -X POST "http://localhost:3000/api/public/demo-bank/transfer" \\
   -H "Content-Type: application/json" \\
-  -d '{"account_number":"9990000027","amount_minor":1200,"rail":"nuban","narration":"Test payment"}'
+  -d '{"account_number":"7770000027","amount_minor":1200,"rail":"nuban","narration":"Test payment"}'
 
-# Simulate MoMo transfer (MTN test prefix 23324…)
+# Simulate MoMo transfer (MTN prefix 23324 + entity digit 7 for an invoice)
 curl -X POST "http://localhost:3000/api/public/demo-bank/transfer" \\
   -H "Content-Type: application/json" \\
-  -d '{"account_number":"2332400000027","amount_minor":1200,"rail":"momo","momo_network":"mtn"}'
+  -d '{"account_number":"2332470000027","amount_minor":1200,"rail":"momo","momo_network":"mtn"}'
 
 # Direct inbound webhook (production integrations / GHIPSS simulator)
 curl -X POST "http://localhost:3000/api/webhooks/otto-wallet/inbound" \\
   -H "Content-Type: application/json" \\
   -H "X-Otto-Signature: <hmac-of-body>" \\
-  -d '{"event":"otto.wallet.inbound","data":{"account_number":"9990000027","amount_minor":1200,"collect_intent_public_id":"col_..."}}'`}
+  -d '{"event":"otto.wallet.inbound","data":{"account_number":"7770000027","amount_minor":1200,"collect_intent_public_id":"col_..."}}'`}
           />
 
           <h2 id="webhooks">Testing Webhooks</h2>
