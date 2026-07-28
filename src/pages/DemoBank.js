@@ -17,9 +17,12 @@ const MOMO_NETWORKS = [
  */
 const DemoBank = () => {
   const [searchParams] = useSearchParams();
-  const [rail, setRail] = useState(
-    searchParams.get("rail") === "momo" ? "momo" : "nuban",
-  );
+  const [rail, setRail] = useState(() => {
+    const initialRail = searchParams.get("rail");
+    if (initialRail === "momo") return "momo";
+    if (initialRail === "ussd") return "ussd";
+    return "nuban";
+  });
   const [momoNetwork, setMomoNetwork] = useState(
     searchParams.get("network") || "mtn",
   );
@@ -55,6 +58,8 @@ const DemoBank = () => {
   );
 
   const lookupAccount = useCallback(async () => {
+    if (rail === "ussd") return;
+
     const normalized = accountNumber.replace(/\D/g, "");
     if (!normalized) {
       setLookup(null);
@@ -188,9 +193,11 @@ const DemoBank = () => {
   };
 
   const paymentStatus =
-    lookup?.status === "awaiting_payment"
-      ? "Awaiting payment"
-      : lookup?.status === "paid"
+    lookup?.is_wallet_topup
+      ? null
+      : lookup?.status === "awaiting_payment"
+        ? "Awaiting payment"
+        : lookup?.status === "paid"
         ? "Paid"
         : lookup?.status;
 
@@ -239,171 +246,202 @@ const DemoBank = () => {
             >
               Mobile money
             </button>
+            <button
+              type="button"
+              className={rail === "ussd" ? "active" : ""}
+              onClick={() => setRail("ussd")}
+            >
+              USSD / PIN push
+            </button>
           </div>
 
-          {lookup && (
+          {rail === "ussd" ? (
             <section className="demo-bank-beneficiary">
-              <p className="demo-bank-section-label">Pay to</p>
-              <h2>{lookup.recipient_name || "Invoice recipient"}</h2>
-              <p className="demo-bank-amount">GHS {lookup.amount_ghs}</p>
-              {paymentStatus && (
-                <p className="demo-bank-meta">{paymentStatus}</p>
-              )}
-            </section>
-          )}
+              <p className="demo-bank-section-label">
+                USSD / PIN push simulator
+              </p>
+              <h2>Approve direct debit (local only)</h2>
+              <p className="demo-bank-meta">
+                Use the debit request ID from <code>/pay/:qrId?c=...</code>{" "}
+                and approve with PIN <code>1234</code>.
+              </p>
+              <form
+                className="demo-bank-form"
+                onSubmit={handleDirectDebitApprove}
+              >
+                <label>
+                  Debit request ID
+                  <input
+                    type="text"
+                    placeholder="ddr_..."
+                    value={debitRequestId}
+                    onChange={(event) =>
+                      setDebitRequestId(event.target.value)
+                    }
+                    required
+                  />
+                </label>
 
-          {lookup?.status === "paid" && (
-            <div className="demo-bank-success">
-              This invoice is already paid. Payment details are no longer
-              available.
-            </div>
-          )}
+                <label>
+                  PIN
+                  <input
+                    type="password"
+                    inputMode="numeric"
+                    placeholder="1234"
+                    value={approvalPin}
+                    onChange={(event) => setApprovalPin(event.target.value)}
+                    required
+                  />
+                </label>
 
-          <form className="demo-bank-form" onSubmit={handleTransfer}>
-            {rail === "momo" ? (
-              <label>
-                Network
-                <select
-                  value={momoNetwork}
-                  onChange={(event) => setMomoNetwork(event.target.value)}
+                {approvalError && (
+                  <p className="demo-bank-error">{approvalError}</p>
+                )}
+                {approvalResult && (
+                  <div className="demo-bank-success">
+                    Direct debit {approvalResult.debitRequestId} is{" "}
+                    {approvalResult.status}.
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="demo-bank-submit"
+                  disabled={isApprovingDebit}
                 >
-                  {MOMO_NETWORKS.map((network) => (
-                    <option key={network.id} value={network.id}>
-                      {network.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ) : (
-              <label>
-                Bank
-                <input type="text" value={bankLabel} readOnly />
-              </label>
-            )}
-
-            <label>
-              {rail === "momo" ? "MoMo number" : "Account number"}
-              <input
-                type="text"
-                inputMode="numeric"
-                placeholder={
-                  rail === "momo" ? momoMeta.placeholder : "999XXXXXXXX"
-                }
-                value={accountNumber}
-                onChange={(event) => setAccountNumber(event.target.value)}
-                required
-              />
-            </label>
-
-            {isLookingUp && (
-              <p className="demo-bank-hint">Looking up account</p>
-            )}
-            {lookupError && <p className="demo-bank-error">{lookupError}</p>}
-
-            <label>
-              Amount
-              <input
-                type="number"
-                min="0.01"
-                step="0.01"
-                placeholder="0.00"
-                value={amountGhs}
-                onChange={(event) => setAmountGhs(event.target.value)}
-                required
-              />
-            </label>
-
-            <label>
-              Reference
-              <input
-                type="text"
-                placeholder="Payment for invoice"
-                value={narration}
-                onChange={(event) => setNarration(event.target.value)}
-              />
-            </label>
-
-            {transferError && (
-              <p className="demo-bank-error">{transferError}</p>
-            )}
-            {transferResult && (
-              <div className="demo-bank-success">
-                Payment sent. Reference {transferResult.reference}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              className="demo-bank-submit"
-              disabled={isTransferring || !canTransfer}
-            >
-              {isTransferring
-                ? "Sending"
-                : canTransfer
-                  ? "Send payment"
-                  : "Payment closed"}
-            </button>
-          </form>
-
-          <section className="demo-bank-beneficiary">
-            <p className="demo-bank-section-label">USSD / PIN push simulator</p>
-            <h2>Approve direct debit (local only)</h2>
-            <p className="demo-bank-meta">
-              Use the debit request ID from <code>/pay/:qrId?c=...</code> and
-              approve with PIN <code>1234</code>.
-            </p>
-            <form
-              className="demo-bank-form"
-              onSubmit={handleDirectDebitApprove}
-            >
-              <label>
-                Debit request ID
-                <input
-                  type="text"
-                  placeholder="ddr_..."
-                  value={debitRequestId}
-                  onChange={(event) => setDebitRequestId(event.target.value)}
-                  required
-                />
-              </label>
-
-              <label>
-                PIN
-                <input
-                  type="password"
-                  inputMode="numeric"
-                  placeholder="1234"
-                  value={approvalPin}
-                  onChange={(event) => setApprovalPin(event.target.value)}
-                  required
-                />
-              </label>
-
-              {approvalError && (
-                <p className="demo-bank-error">{approvalError}</p>
+                  {isApprovingDebit ? "Approving" : "Approve PIN push"}
+                </button>
+              </form>
+            </section>
+          ) : (
+            <>
+              {lookup && (
+                <section className="demo-bank-beneficiary">
+                  <p className="demo-bank-section-label">
+                    {lookup.is_wallet_topup ? "Top up" : "Pay to"}
+                  </p>
+                  <h2>{lookup.recipient_name || "Invoice recipient"}</h2>
+                  {lookup.amount_ghs && (
+                    <p className="demo-bank-amount">GHS {lookup.amount_ghs}</p>
+                  )}
+                  {lookup.is_wallet_topup && (
+                    <p className="demo-bank-meta">
+                      Otto wallet top-up · any amount
+                    </p>
+                  )}
+                  {paymentStatus && (
+                    <p className="demo-bank-meta">{paymentStatus}</p>
+                  )}
+                </section>
               )}
-              {approvalResult && (
+
+              {lookup?.status === "paid" && (
                 <div className="demo-bank-success">
-                  Direct debit {approvalResult.debitRequestId} is{" "}
-                  {approvalResult.status}.
+                  This invoice is already paid. Payment details are no
+                  longer available.
                 </div>
               )}
 
-              <button
-                type="submit"
-                className="demo-bank-submit"
-                disabled={isApprovingDebit}
-              >
-                {isApprovingDebit ? "Approving" : "Approve PIN push"}
-              </button>
-            </form>
-          </section>
+              <form className="demo-bank-form" onSubmit={handleTransfer}>
+                {rail === "momo" ? (
+                  <label>
+                    Network
+                    <select
+                      value={momoNetwork}
+                      onChange={(event) =>
+                        setMomoNetwork(event.target.value)
+                      }
+                    >
+                      {MOMO_NETWORKS.map((network) => (
+                        <option key={network.id} value={network.id}>
+                          {network.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : (
+                  <label>
+                    Bank
+                    <input type="text" value={bankLabel} readOnly />
+                  </label>
+                )}
+
+                <label>
+                  {rail === "momo" ? "MoMo number" : "Account number"}
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder={
+                      rail === "momo"
+                        ? momoMeta.placeholder
+                        : "999XXXXXXXX (invoice) or 888XXXXXXXX (wallet)"
+                    }
+                    value={accountNumber}
+                    onChange={(event) => setAccountNumber(event.target.value)}
+                    required
+                  />
+                </label>
+
+                {isLookingUp && (
+                  <p className="demo-bank-hint">Looking up account</p>
+                )}
+                {lookupError && (
+                  <p className="demo-bank-error">{lookupError}</p>
+                )}
+
+                <label>
+                  Amount
+                  <input
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="0.00"
+                    value={amountGhs}
+                    onChange={(event) => setAmountGhs(event.target.value)}
+                    required
+                  />
+                </label>
+
+                <label>
+                  Reference
+                  <input
+                    type="text"
+                    placeholder="Payment for invoice"
+                    value={narration}
+                    onChange={(event) => setNarration(event.target.value)}
+                  />
+                </label>
+
+                {transferError && (
+                  <p className="demo-bank-error">{transferError}</p>
+                )}
+                {transferResult && (
+                  <div className="demo-bank-success">
+                    Payment sent. Reference {transferResult.reference}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="demo-bank-submit"
+                  disabled={isTransferring || !canTransfer}
+                >
+                  {isTransferring
+                    ? "Sending"
+                    : canTransfer
+                      ? "Send payment"
+                      : "Payment closed"}
+                </button>
+              </form>
+            </>
+          )}
 
           <p className="demo-bank-footnote">
             Available in local, test, and staging.{" "}
             <a href="/docs/testing#demo-bank">Read the testing guide</a> or{" "}
-            <a href="/docs/webhooks">webhook docs</a>. Create a collect invoice
-            after merchant approval. NUBAN accounts start with <code>999</code>.
+            <a href="/docs/webhooks">webhook docs</a>. Invoice virtual
+            accounts start with <code>999</code>; merchant wallet top-ups use{" "}
+            <code>888</code>; customer wallet top-ups use <code>777</code>.
             MoMo test numbers use Ghana prefixes: MTN <code>23324…</code>,
             Vodafone <code>23320…</code>, AirtelTigo <code>23327…</code>.
           </p>

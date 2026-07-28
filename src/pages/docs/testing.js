@@ -306,16 +306,8 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
             <a href="/demo-bank" className="text-[#00B4D8] hover:underline">
               Otto Demo Bank
             </a>{" "}
-            to simulate bank transfer or mobile money payments — similar to{" "}
-            <a
-              href="https://demobank.paystackintegrations.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#00B4D8] hover:underline"
-            >
-              Paystack Demo Bank
-            </a>
-            .
+            to simulate bank transfer or mobile money payments without a real
+            payment processor.
           </p>
 
           <div className="docs-alert info">
