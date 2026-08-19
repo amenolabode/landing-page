@@ -210,6 +210,30 @@
   line-height: 1.45;
 }
 
+.demo-bank-success-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.demo-bank-success-dismiss {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.demo-bank-success-dismiss:hover {
+  opacity: 0.85;
+}
+
 .demo-bank-submit {
   margin-top: 0.25rem;
   border: none;

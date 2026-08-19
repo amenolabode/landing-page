@@ -192,6 +192,15 @@ const DemoBank = () => {
     }
   };
 
+  const clearTransferCompletion = useCallback(() => {
+    setTransferResult(null);
+    setTransferError("");
+  }, []);
+
+  const startNewPayment = useCallback(() => {
+    clearTransferCompletion();
+  }, [clearTransferCompletion]);
+
   const paymentStatus =
     lookup?.is_wallet_topup
       ? null
@@ -201,7 +210,17 @@ const DemoBank = () => {
         ? "Paid"
         : lookup?.status;
 
-  const canTransfer = lookup?.status === "awaiting_payment";
+  const canTransfer =
+    lookup?.is_wallet_topup || lookup?.status === "awaiting_payment";
+
+  const isPaymentClosed =
+    Boolean(lookup) && !canTransfer && lookup?.status === "paid";
+
+  const submitLabel = isTransferring
+    ? "Sending"
+    : isPaymentClosed
+      ? "Payment closed"
+      : "Send payment";
 
   return (
     <div className="demo-bank-page">
@@ -235,21 +254,30 @@ const DemoBank = () => {
             <button
               type="button"
               className={rail === "nuban" ? "active" : ""}
-              onClick={() => setRail("nuban")}
+              onClick={() => {
+                setRail("nuban");
+                startNewPayment();
+              }}
             >
               Bank transfer
             </button>
             <button
               type="button"
               className={rail === "momo" ? "active" : ""}
-              onClick={() => setRail("momo")}
+              onClick={() => {
+                setRail("momo");
+                startNewPayment();
+              }}
             >
               Mobile money
             </button>
             <button
               type="button"
               className={rail === "ussd" ? "active" : ""}
-              onClick={() => setRail("ussd")}
+              onClick={() => {
+                setRail("ussd");
+                startNewPayment();
+              }}
             >
               USSD / PIN push
             </button>
@@ -342,7 +370,27 @@ const DemoBank = () => {
                 </div>
               )}
 
-              <form className="demo-bank-form" onSubmit={handleTransfer}>
+              {transferResult && (
+                <div className="demo-bank-success demo-bank-success-banner">
+                  {transferResult.deduplicated
+                    ? `Already processed (same idempotency key) — no new credit. Reference ${transferResult.reference}.`
+                    : `Payment sent. Reference ${transferResult.reference}`}
+                  <button
+                    type="button"
+                    className="demo-bank-success-dismiss"
+                    onClick={clearTransferCompletion}
+                  >
+                    Dismiss
+                  </button>
+                </div>
+              )}
+
+              <form
+                className="demo-bank-form"
+                onSubmit={handleTransfer}
+                onChange={startNewPayment}
+                onInvalid={startNewPayment}
+              >
                 {rail === "momo" ? (
                   <label>
                     Network
@@ -415,22 +463,13 @@ const DemoBank = () => {
                 {transferError && (
                   <p className="demo-bank-error">{transferError}</p>
                 )}
-                {transferResult && (
-                  <div className="demo-bank-success">
-                    Payment sent. Reference {transferResult.reference}
-                  </div>
-                )}
 
                 <button
                   type="submit"
                   className="demo-bank-submit"
                   disabled={isTransferring || !canTransfer}
                 >
-                  {isTransferring
-                    ? "Sending"
-                    : canTransfer
-                      ? "Send payment"
-                      : "Payment closed"}
+                  {submitLabel}
                 </button>
               </form>
             </>
