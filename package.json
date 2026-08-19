@@ -26,11 +26,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:local": "env-cmd -f .env.local react-scripts start",
-    "start:test": "env-cmd -f .env.test react-scripts start",
-    "start:staging": "env-cmd -f .env.staging react-scripts start",
-    "start:production": "env-cmd -f .env.production react-scripts start",
+    "start": "PORT=3003 react-scripts start",
+    "start:local": "PORT=3003 env-cmd -f .env.local react-scripts start",
+    "start:test": "PORT=3003 env-cmd -f .env.test react-scripts start",
+    "start:staging": "PORT=3003 env-cmd -f .env.staging react-scripts start",
+    "start:production": "PORT=3003 env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
     "build:local": "env-cmd -f .env.local react-scripts build",
     "build:test": "env-cmd -f .env.test react-scripts build",
