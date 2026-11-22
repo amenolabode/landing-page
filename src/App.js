@@ -19,6 +19,7 @@ import InvestmentTermsAndConditions from "./pages/InvestmentTermsAndConditions";
 import CookiePolicy from "./pages/CookiePolicy";
 import Security from "./pages/Security";
 import AccountDeletion from "./pages/AccountDeletion";
+import VerifyStatement from "./pages/VerifyStatement";
 import Page404 from "./pages/404";
 
 // About sub-pages
@@ -73,6 +74,7 @@ import CoreBanking from "./pages/docs/fcl/core-banking";
 // Gift Card Share
 import InviteReferralPage from "./pages/InviteReferralPage";
 import GiftCardShare from "./pages/GiftCardShare";
+import LoyaltyJoin from "./pages/LoyaltyJoin";
 import GiftCardReceive from "./pages/GiftCardReceive";
 import InvestmentGiftReceive from "./pages/InvestmentGiftReceive";
 import PayPage from "./pages/PayPage";
@@ -120,6 +122,7 @@ function App() {
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/security" element={<Security />} />
         <Route path="/account-deletion" element={<AccountDeletion />} />
+        <Route path="/verify" element={<VerifyStatement />} />
 
         {/* About sub-pages */}
         <Route path="/about/qr-payments" element={<QRPayments />} />
@@ -212,6 +215,7 @@ function App() {
 
         {/* Gift Card Share (legacy /gift-cards/:id) */}
         <Route path="/gift-cards/:id" element={<GiftCardShare />} />
+        <Route path="/loyalty/programs/:id" element={<LoyaltyJoin />} />
         {/* Gift Card Receive – link from email/SMS: ?token= */}
         <Route path="/gift-cards/receive" element={<GiftCardReceive />} />
         {/* Investment Gift Receive – link from email/SMS: ?token= */}
