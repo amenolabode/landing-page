@@ -93,10 +93,6 @@ function resolveMerchantPortalUrl(appEnv) {
 /** `local` | `test` | `staging` | `prod` — from APP_ENV / REACT_APP_ENV. */
 export const APP_ENV = normalizeAppEnv(process.env.REACT_APP_ENV);
 
-export function getEnvironment() {
-  return APP_ENV;
-}
-
 export function getApiBaseUrl() {
   return resolveApiBaseUrl(APP_ENV);
 }

@@ -18,14 +18,13 @@ const Webhooks = () => {
     { href: "#payload", label: "Webhook Payload" },
     { href: "#security", label: "Security & Verification" },
     { href: "#retries", label: "Retries & Delivery" },
-    { href: "#testing", label: "Testing with Demo Bank" },
   ];
 
   return (
     <>
       <SEO
         title="Webhooks - Scan Africa API Documentation"
-        description="Configure merchant webhooks for collect.paid and payment events. Learn about delivery retries, signature verification, and testing with Scan Demo Bank."
+        description="Configure merchant webhooks for collect.paid and payment events. Learn about delivery retries and signature verification."
         keywords="Scan webhooks, collect.paid, webhook configuration, webhook events, payment webhooks, real-time notifications"
         url="https://ottoafrica.com/docs/webhooks"
       />
@@ -324,48 +323,12 @@ function verifyWebhookSignature(rawBody, signatureHeader, secret) {
             so you can confirm the event fired during integration testing.
           </p>
 
-          <h2 id="testing">Testing with Demo Bank</h2>
-
-          <p>
-            The fastest way to trigger an Scan Cash credit in sandbox is Scan
-            Demo Bank. Invoice <code>collect.paid</code> is no longer driven by
-            a dedicated NUBAN — pay invoices with QR, mobile money, or Scan
-            Cash.
-          </p>
-
-          <ol className="list-decimal list-inside space-y-2 mb-6">
-            <li>Copy a merchant or customer Scan Cash NUBAN (888… / 999…)</li>
-            <li>
-              Open{" "}
-              <a href="/demo-bank" className="text-[#0B2B26] hover:underline">
-                Demo Bank
-              </a>{" "}
-              and enter that wallet number
-            </li>
-            <li>Send a test credit — retired 777 numbers return 410</li>
-            <li>
-              Check your endpoint (or Scan&apos;s delivery audit) for{" "}
-              <code>collect.paid</code>
-            </li>
-          </ol>
-
-          <p>
-            See the full walkthrough in the{" "}
-            <a
-              href="/docs/testing#demo-bank"
-              className="text-[#0B2B26] hover:underline"
-            >
-              Testing guide
-            </a>
-            .
-          </p>
-
           <div className="docs-alert success">
             <strong>Need help?</strong> See the{" "}
             <a href="/docs/testing" className="underline">
               Testing guide
             </a>{" "}
-            for Demo Bank curl examples, or visit our{" "}
+            or visit our{" "}
             <a href="/docs/support" className="underline">
               Support page
             </a>

@@ -17,7 +17,6 @@ const Testing = () => {
     { href: "#test-keys", label: "Test API Keys" },
     { href: "#test-data", label: "Test Data" },
     { href: "#checklist", label: "Testing Checklist" },
-    { href: "#demo-bank", label: "Demo Bank (NUBAN / MoMo)" },
     { href: "#webhooks", label: "Testing Webhooks" },
     { href: "#collect-pay", label: "Collect & Pay Notes" },
     { href: "#go-live", label: "Go Live Checklist" },
@@ -41,7 +40,7 @@ const Testing = () => {
 
           <DocsOpener
             lead="Test keys and live keys hit the same host. The key prefix selects the environment. sk_test_ uses test ledgers. sk_live_ uses production."
-            when="Use this page before you go live: first collect, webhooks, Demo Bank, and MoMo simulation. Never use sk_live_ until the checklist on this page is complete."
+            when="Use this page before you go live: first collect and webhooks. Never use sk_live_ until the checklist on this page is complete."
             why="The same URLs reduce config errors. Isolation by key prefix keeps test money off live customers."
             how="Create a test key in the Merchant Portal. Send Authorization: Bearer sk_test_.... Run the checklist. Switch to sk_live_ only after collect, webhooks, and error paths succeed in test."
           />
@@ -296,93 +295,6 @@ curl -X GET "https://api.ottoafrica.com/api/merchant/giftcards" \\
             </div>
           </div>
 
-          <h2 id="demo-bank">Demo Bank (Scan Cash NUBAN / MoMo)</h2>
-
-          <p>
-            Scan Cash wallets use Scan-issued identifiers (
-            <code>888…</code> merchant, <code>999…</code> customer). Collect-in
-            virtual accounts are <strong>removed</strong>. On{" "}
-            <strong>local and test</strong> (with{" "}
-            <code>APP_ENV=local</code> or <code>test</code>; demo bank is on by
-            default there), use{" "}
-            <a href="/demo-bank" className="text-[#0B2B26] hover:underline">
-              Scan Demo Bank
-            </a>{" "}
-            to simulate a credit into an Scan Cash wallet without a real
-            payment processor. Invoices are paid with QR, mobile money, or Scan
-            Cash — not a dedicated NUBAN.
-          </p>
-
-          <div className="docs-alert info">
-            Demo Bank is disabled on staging and production. Wallet credits use
-            the Scan Cash ledger path (<code>scan.wallet.inbound</code> /
-            demo-bank transfer).
-          </div>
-
-          <div className="bg-blue-50 p-6 rounded-lg mb-6">
-            <h4 className="font-semibold text-blue-900 mb-2">
-              End-to-end test flow
-            </h4>
-            <ol className="text-blue-800 text-sm space-y-2 list-decimal list-inside">
-              <li>
-                Copy an Scan Cash NUBAN (<code>888…</code> / <code>999…</code>)
-                or matching MoMo number from a merchant or customer wallet
-                screen.
-              </li>
-              <li>
-                Open{" "}
-                <a href="/demo-bank" className="underline">
-                  /demo-bank
-                </a>
-                , paste the account number, and confirm lookup shows an Scan
-                Cash wallet.
-              </li>
-              <li>
-                Send a test credit. Retired collect numbers (<code>777…</code>)
-                return <code>410 VIRTUAL_ACCOUNT_REMOVED</code>.
-              </li>
-            </ol>
-          </div>
-
-          <h3>Demo Bank API</h3>
-
-          <div className="api-endpoint mb-4">
-            <span className="method get">GET</span>
-            <strong>/api/public/demo-bank/lookup</strong>
-            <br />
-            <span className="description">
-              Resolve an Scan Cash wallet — query params: <code>account</code>,{" "}
-              <code>rail</code> (<code>nuban</code> | <code>momo</code>),
-              optional <code>network</code> for MoMo
-            </span>
-          </div>
-
-          <div className="api-endpoint mb-6">
-            <span className="method post">POST</span>
-            <strong>/api/public/demo-bank/transfer</strong>
-            <br />
-            <span className="description">
-              Simulate an inbound credit onto an Scan Cash wallet
-            </span>
-          </div>
-
-          <CodeBlock
-            language="bash"
-            code={`# Lookup an Scan Cash wallet (customer NUBAN)
-curl "http://localhost:3000/api/public/demo-bank/lookup?account=9990000002&rail=nuban"
-
-# Simulate bank transfer into Scan Cash
-curl -X POST "http://localhost:3000/api/public/demo-bank/transfer" \\
-  -H "Content-Type: application/json" \\
-  -d '{"account_number":"9990000002","amount_minor":1200,"rail":"nuban","narration":"Test top-up"}'
-
-# Direct inbound webhook (Scan Cash only)
-curl -X POST "http://localhost:3000/api/webhooks/scan-wallet/inbound" \\
-  -H "Content-Type: application/json" \\
-  -H "X-Scan-Signature: <hmac-of-body>" \\
-  -d '{"event":"scan.wallet.inbound","data":{"account_number":"9990000002","amount_minor":1200}}'`}
-          />
-
           <h2 id="webhooks">Testing Webhooks</h2>
 
           <p>
@@ -402,7 +314,7 @@ curl -X POST "http://localhost:3000/api/webhooks/scan-wallet/inbound" \\
               Use a tunnel (ngrok, Cloudflare Tunnel) or a request inspector
               like webhook.site in development
             </li>
-            <li>Pay an invoice with QR or mobile money (not Demo Bank VA)</li>
+            <li>Pay an invoice with QR or mobile money</li>
             <li>
               Confirm your endpoint receives a signed POST with{" "}
               <code>X-Scan-Event: collect.paid</code>

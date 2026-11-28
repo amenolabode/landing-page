@@ -183,16 +183,6 @@ const DocsIndex = () => {
             <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside">
               <li>
                 <Link
-                  to="/demo-bank"
-                  className="text-[#0B2B26] hover:underline"
-                >
-                  Demo Bank
-                </Link>{" "}
-                — simulate NUBAN and MoMo credits into Scan Cash wallets (local /
-                test / staging)
-              </li>
-              <li>
-                <Link
                   to="/docs/webhooks"
                   className="text-[#0B2B26] hover:underline"
                 >
@@ -265,14 +255,6 @@ const DocsIndex = () => {
                 Resources
               </h3>
               <ul className="space-y-3">
-                <li>
-                  <Link
-                    to="/docs/testing#demo-bank"
-                    className="text-gray-600 hover:text-black transition-colors text-sm"
-                  >
-                    Demo Bank (sandbox payments)
-                  </Link>
-                </li>
                 <li>
                   <Link
                     to="/docs/sdks"

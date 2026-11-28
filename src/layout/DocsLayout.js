@@ -68,7 +68,6 @@ const DOCS_SIDEBAR_ITEMS = [
   {
     title: "Tools",
     items: [
-      { path: "/demo-bank", label: "Demo Bank" },
       { path: "/docs/sdks", label: "SDKs & Libraries" },
       { path: "/docs/support", label: "Support" },
     ],

@@ -165,56 +165,6 @@ export const getSoftwareApplicationSchema = () => ({
 });
 
 /**
- * Get Breadcrumb Schema.
- * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
- */
-export const getBreadcrumbSchema = (items) => ({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: items.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.name,
-    item: item.url,
-  })),
-});
-
-/**
- * Get F A Q Schema.
- * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
- */
-export const getFAQSchema = (faqs) => ({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-});
-
-/**
- * Get Product Schema.
- * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
- */
-export const getProductSchema = (product) => ({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: product.name,
-  description: product.description,
-  image: product.image,
-  offers: {
-    "@type": "Offer",
-    price: product.price || "0",
-    priceCurrency: "GHS",
-    availability: "https://schema.org/InStock",
-  },
-});
-
-/**
  * Get Local Business Schema.
  * UI helpers stay in lib/ and hooks/ so pages remain declarative and API shapes stay centralized in lib/api.ts.
  */

@@ -78,7 +78,6 @@ import InvestmentGiftReceive from "./pages/InvestmentGiftReceive";
 import PayPage from "./pages/PayPage";
 import Pricing from "./pages/Pricing";
 import Checkout from "./pages/Checkout";
-import DemoBank from "./pages/DemoBank";
 
 // Import routes
 import { paths } from "./utils/routes";
@@ -229,9 +228,6 @@ function App() {
         {/* Checkout */}
         <Route path="/checkout" element={<Checkout />} />
 
-        {/* Demo bank — simulate NUBAN / MoMo transfers (non-production) */}
-        <Route path={paths.DEMO_BANK} element={<DemoBank />} />
-        <Route path="/test-bank" element={<DemoBank />} />
 
         {/* 404 Fallback */}
         <Route path="*" element={<Page404 />} />

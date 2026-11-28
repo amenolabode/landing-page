@@ -44,5 +44,3 @@ export default function ReferralQueryHandler() {
 
   return null;
 }
-
-export { STORAGE_KEY as SCAN_REFERRAL_STORAGE_KEY };

@@ -69,6 +69,4 @@ export const paths = {
   // Pay (merchant QR scan)
   PAY: "/pay/:qrId",
 
-  // Demo bank (NUBAN / MoMo sandbox transfers)
-  DEMO_BANK: "/demo-bank",
 };

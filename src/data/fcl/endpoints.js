@@ -3,7 +3,6 @@ import {
   COLLECTION_MIN_GHS,
   DEFAULT_CALLBACK_URL,
   DISBURSEMENT_MIN_GHS,
-  PUBLIC_BASE_URL,
 } from "./constants";
 
 export const WEBHOOK_PAYLOAD_EXAMPLE = `{
@@ -794,45 +793,6 @@ export const endpoints = [
     ],
   },
 ];
-
-export function getEndpoint(id) {
-  return endpoints.find((e) => e.id === id);
-}
-
-export function curlFor(endpoint, { apiKey = "YOUR_API_KEY", baseUrl = PUBLIC_BASE_URL } = {}) {
-  const path = endpoint.examplePath || concretePath(endpoint);
-  const url = `${baseUrl}${path}`;
-  const lines = [`curl -X ${endpoint.method} "${url}"`];
-  if (endpoint.auth === "apiKey") {
-    lines.push(`  -H "X-Api-Key: ${apiKey}"`);
-  }
-  if (endpoint.requestBody) {
-    const compact = JSON.stringify(JSON.parse(endpoint.requestBody));
-    lines.push(`  -H "Content-Type: application/json"`);
-    lines.push(`  -d '${compact}'`);
-  }
-  return lines.join(" \\\n");
-}
-
-export function jsFor(endpoint, { apiKey = "YOUR_API_KEY", baseUrl = PUBLIC_BASE_URL } = {}) {
-  const path = endpoint.examplePath || concretePath(endpoint);
-  const headers = {};
-  if (endpoint.auth === "apiKey") headers["X-Api-Key"] = apiKey;
-  if (endpoint.requestBody) headers["Content-Type"] = "application/json";
-  const headerLines = Object.entries(headers)
-    .map(([k, v]) => `    "${k}": "${v}"`)
-    .join(",\n");
-  const body = endpoint.requestBody
-    ? `,\n  body: JSON.stringify(${endpoint.requestBody})`
-    : "";
-  return `const res = await fetch("${baseUrl}${path}", {
-  method: "${endpoint.method}",
-  headers: {
-${headerLines || "    // no extra headers"}
-  }${body}
-});
-const data = await res.json();`;
-}
 
 function concretePath(endpoint) {
   let path = endpoint.path;
