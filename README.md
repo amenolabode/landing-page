@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Scan website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The public site at ottoafrica.com. It explains Scan to customers and businesses, hosts the developer docs, and is where links from the apps, SMS and email land (pay links, gift cards, referrals).
 
-## Available Scripts
+Code layout: [ARCHITECTURE.md](ARCHITECTURE.md).
 
-In the project directory, you can run:
+## Pages
 
-### `npm start`
+| Area | Pages |
+| --- | --- |
+| Marketing | Home, business and personal solutions, about (QR payments, gift cards, loyalty), pricing, contact, security |
+| Legal | Privacy policy and terms (redirect to the FCL PDFs), investment terms, cookie policy, account deletion |
+| Developer docs (`/docs`) | Getting started, authentication, payments, transfers, funding flows, PIN, identity, gift cards, investment certificates, transactions, loyalty, QR codes, settlements, user management, webhooks, errors, rate limits, accounting, Cosmo (LLM), SDKs (JS, Flutter, Android, iOS), testing, support |
+| FCL docs (`/fcl`) | Architecture, gateway and quickstart, core banking. Hidden on the production site |
+| Link landings | `/pay/:qrId` (opens the app or the store), `/gift-cards/receive` and `/investment-gift/receive` (`?token=` from SMS or email), `/gift-cards/:id` share page, referral invite, checkout |
 
-Runs the app in the development mode.\
-Open [http://localhost:3003](http://localhost:3003) to view it in your browser.
+Link landings try to open the customer app first and fall back to the App Store or Google Play for the visitor's phone.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Run it
 
-### `npm test`
+```bash
+npm install
+cp .env.example .env     # APP_ENV=local|test|staging|prod
+npm start                # http://localhost:3003
+npm run build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploy
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Vercel (`vercel.json`): legal redirects, single-page rewrite, and security headers on every response (HSTS, nosniff, frame and referrer policy).
